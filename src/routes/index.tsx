@@ -214,7 +214,7 @@ function Index() {
           <SectionTitle kicker="Our Mission" title="Four Pillars, One Grid Slot" />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {missionPillars.map((p, i) => {
-              const Icon = missionIcons[i];
+              const Icon = missionIcons[i % missionIcons.length]!;
               return (
                 <article
                   key={p.title}
@@ -237,7 +237,7 @@ function Index() {
           <SectionTitle kicker="Our Divisions" title="Six Crews. One Kart." />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {divisions.map((d, i) => {
-              const Icon = divisionIcons[i];
+              const Icon = divisionIcons[i % divisionIcons.length]!;
               const img = i === 0 ? divChassis : i === 2 ? divElectrical : null;
               return (
                 <article
@@ -318,7 +318,7 @@ function Index() {
           <SectionTitle kicker="Why Sponsor Us" title="A Bet On Engineers Who Win" />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {sponsorReasons.map((r, i) => {
-              const Icon = reasonIcons[i];
+              const Icon = reasonIcons[i % reasonIcons.length]!;
               return (
                 <article
                   key={r.title}
