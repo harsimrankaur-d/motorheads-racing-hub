@@ -120,6 +120,65 @@ const SPARKS = Array.from({ length: 18 }, (_, i) => {
   return { top, left, size, opacity, delay, duration };
 });
 
+function CounterNumber({
+  target,
+  suffix,
+  className,
+}: {
+  target: number;
+  suffix?: string;
+  className?: string;
+}) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const [count, setCount] = useState(target);
+  const [hasStarted, setHasStarted] = useState(false);
+  const [finished, setFinished] = useState(false);
+
+  useEffect(() => {
+    if (!ref.current || typeof IntersectionObserver === "undefined") return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasStarted) {
+            setHasStarted(true);
+            setCount(1);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [hasStarted]);
+
+  useEffect(() => {
+    if (!hasStarted) return;
+    const duration = 1500;
+    const start = 1;
+    const end = target;
+    const startTime = performance.now();
+    let raf = 0;
+    const tick = (now: number) => {
+      const progress = Math.min((now - startTime) / duration, 1);
+      setCount(Math.floor(start + (end - start) * progress));
+      if (progress < 1) {
+        raf = requestAnimationFrame(tick);
+      } else {
+        setFinished(true);
+      }
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [hasStarted, target]);
+
+  return (
+    <span ref={ref} className={className}>
+      {count}
+      {(finished || !hasStarted) && suffix}
+    </span>
+  );
+}
+
 function Index() {
 
   return (
