@@ -446,7 +446,13 @@ function Index() {
           <div className="mt-12 grid divide-y divide-border border border-border bg-card sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4 lg:divide-x">
             {impactStats.map((s) => (
               <div key={s.label} className="px-6 py-8">
-                <div className="skew-title text-3xl text-primary sm:text-4xl">{s.value}</div>
+                <div className="skew-title text-3xl text-primary sm:text-4xl">
+                  {s.value === "25+" ? (
+                    <CounterNumber target={25} suffix="+" />
+                  ) : (
+                    s.value
+                  )}
+                </div>
                 <div className="mt-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-muted-foreground">
                   {s.label}
                 </div>
