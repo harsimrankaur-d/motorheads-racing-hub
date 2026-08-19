@@ -397,18 +397,16 @@ function Index() {
       </section>
 
       {/* TIERS */}
-      <section id="tiers" className="relative overflow-hidden bg-card py-24">
-        <SparkBackground />
+      <section id="tiers" className="bg-card py-24">
         <div className="mx-auto max-w-7xl px-5">
-
           <SectionTitle kicker="Sponsorship Tiers" title="Pick Your Grid Position" />
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <div className="flex flex-wrap justify-center gap-5">
             {tiers.map((t, i) => (
               <article
                 key={t.name}
-                className={`group flex flex-col border bg-background p-7 transition-all duration-300 hover:-translate-y-2 ${
+                className={`group flex w-full flex-col border bg-background p-7 transition-all duration-300 hover:-translate-y-2 md:w-[calc(50%-10px)] lg:w-[calc(33.333%-14px)] ${
                   i === 0
-                    ? "border-primary shadow-[var(--shadow-red)] lg:col-span-1"
+                    ? "border-primary shadow-[var(--shadow-red)]"
                     : "border-border hover:border-primary"
                 }`}
               >
@@ -417,7 +415,7 @@ function Index() {
                 </span>
                 <h3 className="mt-4 text-2xl leading-tight text-foreground">{t.name}</h3>
                 <div className="mt-4 h-px w-full bg-border" />
-                <ul className="mt-5 space-y-3">
+                <ul className="mt-5 flex-1 space-y-3">
                   {t.benefits.map((b) => (
                     <li key={b} className="flex gap-2 text-sm leading-relaxed text-muted-foreground">
                       <ChevronRight className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
