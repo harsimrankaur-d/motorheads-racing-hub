@@ -23,11 +23,10 @@ import {
   Target,
 } from "lucide-react";
 
-import heroKart from "@/assets/kart-hero.jpg.asset.json";
-import logoAsset from "@/assets/motorheads-logo.png.asset.json";
-import teamGroup from "@/assets/WhatsApp_Image_2026-06-20_at_15.32.31.jpg";
+import heroKart from "@/assets/kart-hero.jpg";
+import logoAsset from "@/assets/motorheads-logo.png";
+import teamGroup from "@/assets/team-group.jpg";
 import divChassis from "@/assets/div-chassis.jpg";
-import divPowertrain from "@/assets/Gemini_Generated_Image_c6ekuvc6ekuvc6ek.jpg";
 import divElectrical from "@/assets/div-electrical.jpg";
 import {
   missionPillars,
@@ -45,7 +44,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "MOTORHEADS is the official student motorsport and engineering team of BMSIT&M, Bengaluru — 25 engineers building combustion and electric go-karts for national competition.",
+          "MOTORHEADS is the official student motorsport and engineering team of BMSIT&M, Bengaluru — 25+ engineers building combustion and electric go-karts for national competition.",
       },
       { property: "og:title", content: "MOTORHEADS — BMSIT&M Student Motorsport Team" },
       {
@@ -153,7 +152,7 @@ function Index() {
       <header className="fixed inset-x-0 top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-md">
         <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5">
           <a href="#top" className="flex items-center gap-2">
-            <img src={logoAsset.url} alt="Motorheads logo" className="h-7 w-7 object-contain" />
+            <img src={logoAsset} alt="Motorheads logo" className="h-7 w-7 object-contain" />
             <span className="skew-title -skew-x-6 text-xl tracking-tight">MOTORHEADS</span>
           </a>
           <div className="hidden items-center gap-7 text-xs font-semibold uppercase tracking-widest text-muted-foreground lg:flex">
@@ -182,7 +181,7 @@ function Index() {
       {/* HERO */}
       <section id="top" className="relative flex min-h-[100svh] items-end overflow-hidden">
         <img
-          src={heroKart.url}
+          src={heroKart}
           alt="Motorheads go-kart racing on track at dusk"
           className="absolute inset-0 h-full w-full object-cover object-center"
         />
@@ -231,7 +230,8 @@ function Index() {
         </div>
         <div className="checker-strip absolute inset-x-0 bottom-0 h-4 opacity-90" aria-hidden />
       </section>
-{/* ABOUT */}
+
+      {/* ABOUT */}
       <section id="about" className="relative border-b border-border bg-background py-24 overflow-hidden">
         <SparkBackground />
         <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-5 lg:grid-cols-2">
@@ -310,7 +310,7 @@ function Index() {
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {divisions.map((d, i) => {
               const Icon = divisionIcons[i % divisionIcons.length]!;
-              const img = i === 0 ? divChassis : i === 1 ? divPowertrain : i === 2 ? divElectrical : null;
+              const img = i === 0 ? divChassis : i === 2 ? divElectrical : null;
               return (
                 <article
                   key={d.name}
@@ -406,7 +406,7 @@ function Index() {
             })}
           </div>
 
-          {/* Impact strip with Animated Counter */}
+          {/* Impact strip */}
           <div className="mt-12 grid divide-y divide-border border border-border bg-card sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4 lg:divide-x">
             {impactStats.map((s) => (
               <div key={s.label} className="px-6 py-8">
@@ -424,7 +424,7 @@ function Index() {
         </div>
       </section>
 
-      {/* TIERS (WITH CENTERED BOTTOM CARDS) */}
+      {/* TIERS */}
       <section id="tiers" className="relative overflow-hidden bg-card py-24">
         <SparkBackground />
         <div className="relative mx-auto max-w-7xl px-5">
@@ -516,11 +516,14 @@ function Index() {
               <div className="mt-4 space-y-2 text-sm text-muted-foreground">
                 <a
                   href="mailto:vivekdb720@gmail.com"
-                  className="flex items-center gap-2 hover:text-primary"
+                  className="flex items-center gap-2 hover:text-primary transition-colors"
                 >
                   <Mail className="h-4 w-4 text-primary" /> vivekdb720@gmail.com
                 </a>
-                <a href="tel:+919108920420" className="flex items-center gap-2 hover:text-primary">
+                <a 
+                  href="tel:+919108920420" 
+                  className="flex items-center gap-2 hover:text-primary transition-colors"
+                >
                   <Phone className="h-4 w-4 text-primary" /> +91 91089 20420
                 </a>
               </div>
@@ -532,23 +535,25 @@ function Index() {
               <div className="mt-4 space-y-2 text-sm text-muted-foreground">
                 <a
                   href="mailto:teammotorheads@bmsit.in"
-                  className="flex items-center gap-2 hover:text-primary"
+                  className="flex items-center gap-2 hover:text-primary transition-colors"
                 >
                   <Mail className="h-4 w-4 text-primary" /> teammotorheads@bmsit.in
                 </a>
+                {/* UPDATED INSTAGRAM LINK */}
                 <a
-                  href="https://instagram.com/motor.heads_bmsit"
+                  href="https://www.instagram.com/motor.heads_bmsit?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
                   target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-2 hover:text-primary"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 hover:text-primary transition-colors"
                 >
                   <Instagram className="h-4 w-4 text-primary" /> @motor.heads_bmsit
                 </a>
+                {/* UPDATED LINKEDIN LINK */}
                 <a
-                  href="https://www.linkedin.com/company/motor-heads-bmsitm"
+                  href="https://www.linkedin.com/company/motor-heads-bmsit/posts/?feedView=all"
                   target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-2 hover:text-primary"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 hover:text-primary transition-colors"
                 >
                   <Linkedin className="h-4 w-4 text-primary" /> Motor Heads - BMSIT&M
                 </a>
@@ -569,7 +574,7 @@ function Index() {
         <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:grid-cols-3">
           <div>
             <div className="flex items-center gap-2">
-              <img src={logoAsset.url} alt="Motorheads logo" className="h-7 w-7 object-contain" />
+              <img src={logoAsset} alt="Motorheads logo" className="h-7 w-7 object-contain" />
               <span className="skew-title -skew-x-6 text-xl">MOTORHEADS</span>
             </div>
             <p className="mt-3 max-w-xs text-sm text-muted-foreground">
@@ -598,19 +603,21 @@ function Index() {
           <div>
             <h4 className="text-sm tracking-widest text-foreground">Follow</h4>
             <div className="mt-4 flex gap-3">
+              {/* FOOTER INSTAGRAM ICON */}
               <a
-                href="https://instagram.com/motor.heads_bmsit"
+                href="https://www.instagram.com/motor.heads_bmsit?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 aria-label="Instagram"
                 className="border border-border p-2.5 transition-colors hover:border-primary hover:text-primary"
               >
                 <Instagram className="h-5 w-5" />
               </a>
+              {/* FOOTER LINKEDIN ICON */}
               <a
-                href="https://www.linkedin.com/company/motor-heads-bmsitm"
+                href="https://www.linkedin.com/company/motor-heads-bmsit/posts/?feedView=all"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 aria-label="LinkedIn"
                 className="border border-border p-2.5 transition-colors hover:border-primary hover:text-primary"
               >
