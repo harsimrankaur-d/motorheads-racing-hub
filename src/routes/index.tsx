@@ -168,11 +168,10 @@ function Index() {
       <section id="about" className="border-b border-border bg-background py-24">
         <div className="mx-auto grid max-w-7xl items-center gap-14 px-5 lg:grid-cols-2">
           <div>
-            <SectionTitle kicker="Embrace Technology" title="We Don't Meet. We Race." />
-            <p className="text-base leading-relaxed text-muted-foreground">
-              Team Motorheads is BMSIT&M's official student motorsport and engineering team — 25
-              undergraduates who design, analyse, fabricate and race their own combustion (CV) and
-              electric (EV) go-karts at the Indian Karting Race and other national events.
+            <SectionTitle kicker="Embrace Technology" title="WE DON'T MEET. WE RACE." />
+            <h2 className="mb-4 text-2xl font-bold text-foreground">DRIVEN BY DESIGN. PROVEN ON THE GRID.</h2>
+            <p className="mb-6 text-base leading-relaxed text-muted-foreground">
+              DESIGNED TO DISRUPT. BUILT TO RACE.
             </p>
             <blockquote className="red-bar mt-8 text-xl italic leading-snug text-foreground sm:text-2xl">
               "We are not a club that meets on weekends... Every deadline is a race."
