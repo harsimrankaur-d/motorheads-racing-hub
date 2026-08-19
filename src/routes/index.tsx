@@ -23,11 +23,12 @@ import {
   Target,
 } from "lucide-react";
 
-import heroKart from "@/assets/kart-hero.jpg";
-import logoAsset from "@/assets/motorheads-logo.png";
-import teamGroup from "@/assets/team-group.jpg";
-import divChassis from "@/assets/div-chassis.jpg";
-import divElectrical from "@/assets/div-electrical.jpg";
+import heroKart from "@/assets/kart-hero.jpg.asset.json";
+import logoAsset from "@/assets/motorheads-logo.png.asset.json";
+import teamGroup from "@/assets/team-group.jpg.asset.json";
+import divChassis from "@/assets/div-chassis.jpg.asset.json";
+import divPowertrain from "@/assets/div-powertrain.jpg.asset.json";
+import divElectrical from "@/assets/div-electrical.jpg.asset.json";
 import {
   missionPillars,
   divisions,
@@ -152,7 +153,7 @@ function Index() {
       <header className="fixed inset-x-0 top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-md">
         <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5">
           <a href="#top" className="flex items-center gap-2">
-            <img src={logoAsset} alt="Motorheads logo" className="h-7 w-7 object-contain" />
+            <img src={logoAsset.url} alt="Motorheads logo" className="h-7 w-7 object-contain" />
             <span className="skew-title -skew-x-6 text-xl tracking-tight">MOTORHEADS</span>
           </a>
           <div className="hidden items-center gap-7 text-xs font-semibold uppercase tracking-widest text-muted-foreground lg:flex">
@@ -181,7 +182,7 @@ function Index() {
       {/* HERO */}
       <section id="top" className="relative flex min-h-[100svh] items-end overflow-hidden">
         <img
-          src={heroKart}
+          src={heroKart.url}
           alt="Motorheads go-kart racing on track at dusk"
           className="absolute inset-0 h-full w-full object-cover object-center"
         />
@@ -266,7 +267,7 @@ function Index() {
           <div className="relative">
             <div className="absolute -inset-3 -skew-y-2 border border-primary/30" aria-hidden />
             <img
-              src={teamGroup}
+              src={teamGroup.url}
               alt="Team Motorheads members with their go-kart"
               loading="lazy"
               width={1600}
@@ -310,7 +311,7 @@ function Index() {
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {divisions.map((d, i) => {
               const Icon = divisionIcons[i % divisionIcons.length]!;
-              const img = i === 0 ? divChassis : i === 2 ? divElectrical : null;
+              const img = i === 0 ? divChassis.url : i === 1 ? divPowertrain.url : i === 2 ? divElectrical.url : null;
               return (
                 <article
                   key={d.name}
@@ -539,7 +540,6 @@ function Index() {
                 >
                   <Mail className="h-4 w-4 text-primary" /> teammotorheads@bmsit.in
                 </a>
-                {/* UPDATED INSTAGRAM LINK */}
                 <a
                   href="https://www.instagram.com/motor.heads_bmsit?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
                   target="_blank"
@@ -548,7 +548,6 @@ function Index() {
                 >
                   <Instagram className="h-4 w-4 text-primary" /> @motor.heads_bmsit
                 </a>
-                {/* UPDATED LINKEDIN LINK */}
                 <a
                   href="https://www.linkedin.com/company/motor-heads-bmsit/posts/?feedView=all"
                   target="_blank"
@@ -574,7 +573,7 @@ function Index() {
         <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:grid-cols-3">
           <div>
             <div className="flex items-center gap-2">
-              <img src={logoAsset} alt="Motorheads logo" className="h-7 w-7 object-contain" />
+              <img src={logoAsset.url} alt="Motorheads logo" className="h-7 w-7 object-contain" />
               <span className="skew-title -skew-x-6 text-xl">MOTORHEADS</span>
             </div>
             <p className="mt-3 max-w-xs text-sm text-muted-foreground">
@@ -603,7 +602,6 @@ function Index() {
           <div>
             <h4 className="text-sm tracking-widest text-foreground">Follow</h4>
             <div className="mt-4 flex gap-3">
-              {/* FOOTER INSTAGRAM ICON */}
               <a
                 href="https://www.instagram.com/motor.heads_bmsit?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
                 target="_blank"
@@ -613,7 +611,6 @@ function Index() {
               >
                 <Instagram className="h-5 w-5" />
               </a>
-              {/* FOOTER LINKEDIN ICON */}
               <a
                 href="https://www.linkedin.com/company/motor-heads-bmsit/posts/?feedView=all"
                 target="_blank"
