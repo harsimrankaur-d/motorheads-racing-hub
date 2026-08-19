@@ -94,8 +94,8 @@ function Index() {
               ["Mission", "#mission"],
               ["Divisions", "#divisions"],
               ["Racing", "#racing"],
-              ["Sponsor", "#sponsor"],
               ["Journey", "#journey"],
+              ["Sponsor", "#sponsor"],
             ].map(([label, href]) => (
               <a key={href} href={href} className="transition-colors hover:text-primary">
                 {label}
