@@ -78,7 +78,49 @@ function SectionTitle({ kicker, title }: { kicker?: string; title: string }) {
   );
 }
 
+function SparkBackground() {
+  return (
+    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+      <div
+        className="absolute -inset-[50%]"
+        style={{
+          background:
+            "radial-gradient(circle at center, color-mix(in oklab, var(--primary) 5%, transparent), transparent 60%)",
+        }}
+      />
+      {SPARKS.map((s, i) => (
+        <span
+          key={i}
+          className="absolute animate-pulse rounded-full bg-primary"
+          style={{
+            top: `${s.top}%`,
+            left: `${s.left}%`,
+            width: `${s.size}px`,
+            height: `${s.size}px`,
+            opacity: s.opacity,
+            boxShadow: "0 0 6px var(--primary)",
+            animationDelay: s.delay,
+            animationDuration: s.duration,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+const SPARKS = Array.from({ length: 18 }, (_, i) => {
+  const n = i + 1;
+  const top = 5 + Math.abs(Math.sin(n * 12.345)) * 90;
+  const left = 5 + Math.abs(Math.cos(n * 7.891)) * 90;
+  const size = 2 + Math.abs(Math.sin(n * 3.456)) * 3;
+  const opacity = 0.1 + Math.abs(Math.cos(n * 5.678)) * 0.3;
+  const delay = `${(i * 0.25).toFixed(2)}s`;
+  const duration = `${(1.5 + Math.abs(Math.sin(n * 9.012)) * 2).toFixed(2)}s`;
+  return { top, left, size, opacity, delay, duration };
+});
+
 function Index() {
+
   return (
     <div className="min-h-screen bg-background">
       {/* NAV */}
@@ -165,8 +207,10 @@ function Index() {
       </section>
 
       {/* ABOUT */}
-      <section id="about" className="border-b border-border bg-background py-24">
+      <section id="about" className="relative overflow-hidden border-b border-border bg-background py-24">
+        <SparkBackground />
         <div className="mx-auto grid max-w-7xl items-center gap-14 px-5 lg:grid-cols-2">
+
           <div>
             <SectionTitle kicker="Embrace Technology" title="DESIGNED TO DISRUPT. BUILT TO RACE." />
             <h2 className="mb-4 text-2xl font-bold text-foreground">DRIVEN BY DESIGN. PROVEN ON THE GRID.</h2>
@@ -207,7 +251,9 @@ function Index() {
 
       {/* MISSION */}
       <section id="mission" className="relative overflow-hidden bg-card py-24">
+        <SparkBackground />
         <div className="speed-lines absolute inset-0 opacity-20" aria-hidden />
+
         <div className="relative mx-auto max-w-7xl px-5">
           <SectionTitle kicker="Our Mission" title="Four Pillars, One Grid Slot" />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -230,8 +276,10 @@ function Index() {
       </section>
 
       {/* DIVISIONS */}
-      <section id="divisions" className="border-y border-border py-24">
+      <section id="divisions" className="relative overflow-hidden border-y border-border py-24">
+        <SparkBackground />
         <div className="mx-auto max-w-7xl px-5">
+
           <SectionTitle kicker="Our Divisions" title="Six Crews. One Kart." />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {divisions.map((d, i) => {
@@ -268,8 +316,10 @@ function Index() {
       </section>
 
       {/* RACING */}
-      <section id="racing" className="bg-card py-24">
+      <section id="racing" className="relative overflow-hidden bg-card py-24">
+        <SparkBackground />
         <div className="mx-auto max-w-7xl px-5">
+
           <SectionTitle kicker="Our Journey" title="Competition & Achievements" />
           <div className="grid gap-5 lg:grid-cols-2">
             {[
@@ -311,8 +361,10 @@ function Index() {
       </section>
 
       {/* SPONSOR */}
-      <section id="sponsor" className="border-y border-border py-24">
+      <section id="sponsor" className="relative overflow-hidden border-y border-border py-24">
+        <SparkBackground />
         <div className="mx-auto max-w-7xl px-5">
+
           <SectionTitle kicker="Why Sponsor Us" title="A Bet On Engineers Who Win" />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {sponsorReasons.map((r, i) => {
@@ -345,8 +397,10 @@ function Index() {
       </section>
 
       {/* TIERS */}
-      <section id="tiers" className="bg-card py-24">
+      <section id="tiers" className="relative overflow-hidden bg-card py-24">
+        <SparkBackground />
         <div className="mx-auto max-w-7xl px-5">
+
           <SectionTitle kicker="Sponsorship Tiers" title="Pick Your Grid Position" />
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {tiers.map((t, i) => (
@@ -385,7 +439,9 @@ function Index() {
 
       {/* TIMELINE */}
       <section id="journey" className="relative overflow-hidden border-y border-border py-24">
+        <SparkBackground />
         <div className="mx-auto max-w-4xl px-5">
+
           <SectionTitle kicker="Footprints of Excellence" title="The Road So Far" />
           <ol className="relative border-l-2 border-dashed border-border pl-8">
             {timeline.map((t) => (
@@ -409,7 +465,9 @@ function Index() {
 
       {/* CONTACT */}
       <section id="contact" className="relative overflow-hidden bg-card py-24">
+        <SparkBackground />
         <div className="speed-lines absolute inset-0 opacity-25" aria-hidden />
+
         <div className="relative mx-auto grid max-w-7xl gap-12 px-5 lg:grid-cols-2">
           <div>
             <SectionTitle kicker="Partner With Us" title="This Isn't A Donation" />
