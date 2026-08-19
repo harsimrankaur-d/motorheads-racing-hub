@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import {
   Flag,
   Zap,
@@ -25,7 +25,7 @@ import {
 
 import heroKart from "@/assets/kart-hero.jpg.asset.json";
 import logoAsset from "@/assets/motorheads-logo.png.asset.json";
-import teamGroup from "@/assets/WhatsApp_Image_2026-06-20_at_15.32.31.jpeg";
+import teamGroup from "@/assets/team-group.jpg";
 import divChassis from "@/assets/div-chassis.jpg";
 import divElectrical from "@/assets/div-electrical.jpg";
 import {
@@ -63,6 +63,72 @@ const missionIcons = [Flag, Zap, GraduationCap, Briefcase];
 const divisionIcons = [Wrench, Cog, CircuitBoard, Gauge, Ruler, Megaphone];
 const reasonIcons = [Target, Users, Zap, TrendingUp];
 
+/* --- SPARK BACKGROUND COMPONENT --- */
+function SparkBackground() {
+  return (
+    <div className="pointer-events-none absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 bg-radial from-primary/5 via-transparent to-transparent opacity-40" />
+      <div className="absolute inset-0">
+        {Array.from({ length: 18 }).map((_, i) => (
+          <div
+            key={i}
+            className="absolute rounded-full bg-primary animate-pulse"
+            style={{
+              width: `${(i % 3) + 1}px`,
+              height: `${(i % 3) + 1}px`,
+              top: `${((i * 19) % 90) + 5}%`,
+              left: `${((i * 29) % 90) + 5}%`,
+              opacity: ((i % 4) + 1) * 0.1,
+              animationDuration: `${(i % 3) + 2}s`,
+              boxShadow: "0 0 6px var(--primary)",
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* --- COUNT-UP ANIMATION COMPONENT --- */
+function CounterNumber({ target = 25, duration = 1500, suffix = "+" }: { target?: number; duration?: number; suffix?: string }) {
+  const [count, setCount] = useState(1);
+  const [hasRun, setHasRun] = useState(false);
+  const elementRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasRun) {
+          setHasRun(true);
+          let start = 1;
+          const stepTime = Math.abs(Math.floor(duration / target));
+          const timer = setInterval(() => {
+            start += 1;
+            setCount(start);
+            if (start >= target) {
+              clearInterval(timer);
+            }
+          }, stepTime);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (elementRef.current) {
+      observer.observe(elementRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [hasRun, target, duration]);
+
+  return (
+    <span ref={elementRef} className="skew-title text-3xl text-primary sm:text-4xl">
+      {count}
+      {count >= target ? suffix : ""}
+    </span>
+  );
+}
+
 function SectionTitle({ kicker, title }: { kicker?: string; title: string }) {
   return (
     <div className="mb-10">
@@ -79,108 +145,7 @@ function SectionTitle({ kicker, title }: { kicker?: string; title: string }) {
   );
 }
 
-function SparkBackground() {
-  return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
-      <div
-        className="absolute -inset-[50%]"
-        style={{
-          background:
-            "radial-gradient(circle at center, color-mix(in oklab, var(--primary) 5%, transparent), transparent 60%)",
-        }}
-      />
-      {SPARKS.map((s, i) => (
-        <span
-          key={i}
-          className="absolute animate-pulse rounded-full bg-primary"
-          style={{
-            top: `${s.top}%`,
-            left: `${s.left}%`,
-            width: `${s.size}px`,
-            height: `${s.size}px`,
-            opacity: s.opacity,
-            boxShadow: "0 0 6px var(--primary)",
-            animationDelay: s.delay,
-            animationDuration: s.duration,
-          }}
-        />
-      ))}
-    </div>
-  );
-}
-
-const SPARKS = Array.from({ length: 18 }, (_, i) => {
-  const n = i + 1;
-  const top = 5 + Math.abs(Math.sin(n * 12.345)) * 90;
-  const left = 5 + Math.abs(Math.cos(n * 7.891)) * 90;
-  const size = 2 + Math.abs(Math.sin(n * 3.456)) * 3;
-  const opacity = 0.1 + Math.abs(Math.cos(n * 5.678)) * 0.3;
-  const delay = `${(i * 0.25).toFixed(2)}s`;
-  const duration = `${(1.5 + Math.abs(Math.sin(n * 9.012)) * 2).toFixed(2)}s`;
-  return { top, left, size, opacity, delay, duration };
-});
-
-function CounterNumber({
-  target,
-  suffix,
-  className,
-}: {
-  target: number;
-  suffix?: string;
-  className?: string;
-}) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const [count, setCount] = useState(target);
-  const [hasStarted, setHasStarted] = useState(false);
-  const [finished, setFinished] = useState(false);
-
-  useEffect(() => {
-    if (!ref.current || typeof IntersectionObserver === "undefined") return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !hasStarted) {
-            setHasStarted(true);
-            setCount(1);
-          }
-        });
-      },
-      { threshold: 0.3 }
-    );
-    observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [hasStarted]);
-
-  useEffect(() => {
-    if (!hasStarted) return;
-    const duration = 1500;
-    const start = 1;
-    const end = target;
-    const startTime = performance.now();
-    let raf = 0;
-    const tick = (now: number) => {
-      const progress = Math.min((now - startTime) / duration, 1);
-      setCount(Math.floor(start + (end - start) * progress));
-      if (progress < 1) {
-        raf = requestAnimationFrame(tick);
-      } else {
-        setFinished(true);
-      }
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [hasStarted, target]);
-
-  return (
-    <span ref={ref} className={className}>
-      {count}
-      {(finished || !hasStarted) && suffix}
-    </span>
-  );
-}
-
 function Index() {
-
   return (
     <div className="min-h-screen bg-background">
       {/* NAV */}
@@ -267,15 +232,15 @@ function Index() {
       </section>
 
       {/* ABOUT */}
-      <section id="about" className="relative overflow-hidden border-b border-border bg-background py-24">
+      <section id="about" className="relative border-b border-border bg-background py-24 overflow-hidden">
         <SparkBackground />
-        <div className="mx-auto grid max-w-7xl items-center gap-14 px-5 lg:grid-cols-2">
-
+        <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-5 lg:grid-cols-2">
           <div>
-            <SectionTitle kicker="Embrace Technology" title="DESIGNED TO DISRUPT. BUILT TO RACE." />
-            <h2 className="mb-4 text-2xl font-bold text-foreground">DRIVEN BY DESIGN. PROVEN ON THE GRID.</h2>
-            <p className="mb-6 text-base leading-relaxed text-muted-foreground">
-              Team Motorheads is BMSIT&M's official student motorsport and engineering team — 25+ undergraduates who design, analyse, fabricate and race their own combustion (CV) and electric (EV) go-karts at the Indian Karting Race and other national events.
+            <SectionTitle kicker="Embrace Technology" title="We Don't Meet. We Race." />
+            <p className="text-base leading-relaxed text-muted-foreground">
+              Team Motorheads is BMSIT&M's official student motorsport and engineering team — 25
+              undergraduates who design, analyse, fabricate and race their own combustion (CV) and
+              electric (EV) go-karts at the Indian Karting Race and other national events.
             </p>
             <blockquote className="red-bar mt-8 text-xl italic leading-snug text-foreground sm:text-2xl">
               "We are not a club that meets on weekends... Every deadline is a race."
@@ -287,7 +252,9 @@ function Index() {
                 ["6", "Divisions"],
               ].map(([v, l]) => (
                 <div key={l} className="border border-border bg-card px-4 py-5">
-                  <div className="skew-title text-3xl text-primary">{v}</div>
+                  <div className="skew-title text-3xl text-primary">
+                    {v === "25+" ? <CounterNumber target={25} suffix="+" /> : v}
+                  </div>
                   <div className="mt-1 text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
                     {l}
                   </div>
@@ -313,7 +280,6 @@ function Index() {
       <section id="mission" className="relative overflow-hidden bg-card py-24">
         <SparkBackground />
         <div className="speed-lines absolute inset-0 opacity-20" aria-hidden />
-
         <div className="relative mx-auto max-w-7xl px-5">
           <SectionTitle kicker="Our Mission" title="Four Pillars, One Grid Slot" />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -338,8 +304,7 @@ function Index() {
       {/* DIVISIONS */}
       <section id="divisions" className="relative overflow-hidden border-y border-border py-24">
         <SparkBackground />
-        <div className="mx-auto max-w-7xl px-5">
-
+        <div className="relative mx-auto max-w-7xl px-5">
           <SectionTitle kicker="Our Divisions" title="Six Crews. One Kart." />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {divisions.map((d, i) => {
@@ -378,8 +343,7 @@ function Index() {
       {/* RACING */}
       <section id="racing" className="relative overflow-hidden bg-card py-24">
         <SparkBackground />
-        <div className="mx-auto max-w-7xl px-5">
-
+        <div className="relative mx-auto max-w-7xl px-5">
           <SectionTitle kicker="Our Journey" title="Competition & Achievements" />
           <div className="grid gap-5 lg:grid-cols-2">
             {[
@@ -423,8 +387,7 @@ function Index() {
       {/* SPONSOR */}
       <section id="sponsor" className="relative overflow-hidden border-y border-border py-24">
         <SparkBackground />
-        <div className="mx-auto max-w-7xl px-5">
-
+        <div className="relative mx-auto max-w-7xl px-5">
           <SectionTitle kicker="Why Sponsor Us" title="A Bet On Engineers Who Win" />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {sponsorReasons.map((r, i) => {
@@ -442,17 +405,15 @@ function Index() {
             })}
           </div>
 
-          {/* Impact strip */}
+          {/* Impact strip with Animated Counter */}
           <div className="mt-12 grid divide-y divide-border border border-border bg-card sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4 lg:divide-x">
             {impactStats.map((s) => (
               <div key={s.label} className="px-6 py-8">
-                <div className="skew-title text-3xl text-primary sm:text-4xl">
-                  {s.value === "25+" ? (
-                    <CounterNumber target={25} suffix="+" />
-                  ) : (
-                    s.value
-                  )}
-                </div>
+                {s.value === "25+" ? (
+                  <CounterNumber target={25} suffix="+" />
+                ) : (
+                  <div className="skew-title text-3xl text-primary sm:text-4xl">{s.value}</div>
+                )}
                 <div className="mt-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-muted-foreground">
                   {s.label}
                 </div>
@@ -462,9 +423,10 @@ function Index() {
         </div>
       </section>
 
-      {/* TIERS */}
-      <section id="tiers" className="bg-card py-24">
-        <div className="mx-auto max-w-7xl px-5">
+      {/* TIERS (WITH CENTERED BOTTOM CARDS) */}
+      <section id="tiers" className="relative overflow-hidden bg-card py-24">
+        <SparkBackground />
+        <div className="relative mx-auto max-w-7xl px-5">
           <SectionTitle kicker="Sponsorship Tiers" title="Pick Your Grid Position" />
           <div className="flex flex-wrap justify-center gap-5">
             {tiers.map((t, i) => (
@@ -504,8 +466,7 @@ function Index() {
       {/* TIMELINE */}
       <section id="journey" className="relative overflow-hidden border-y border-border py-24">
         <SparkBackground />
-        <div className="mx-auto max-w-4xl px-5">
-
+        <div className="relative mx-auto max-w-4xl px-5">
           <SectionTitle kicker="Footprints of Excellence" title="The Road So Far" />
           <ol className="relative border-l-2 border-dashed border-border pl-8">
             {timeline.map((t) => (
@@ -531,7 +492,6 @@ function Index() {
       <section id="contact" className="relative overflow-hidden bg-card py-24">
         <SparkBackground />
         <div className="speed-lines absolute inset-0 opacity-25" aria-hidden />
-
         <div className="relative mx-auto grid max-w-7xl gap-12 px-5 lg:grid-cols-2">
           <div>
             <SectionTitle kicker="Partner With Us" title="This Isn't A Donation" />
