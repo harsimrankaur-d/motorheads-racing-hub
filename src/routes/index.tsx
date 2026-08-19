@@ -27,6 +27,7 @@ import heroKart from "@/assets/kart-hero.jpg.asset.json";
 import logoAsset from "@/assets/motorheads-logo.png.asset.json";
 import teamGroup from "@/assets/WhatsApp_Image_2026-06-20_at_15.32.31.jpg";
 import divChassis from "@/assets/div-chassis.jpg";
+import divPowertrain from "@/assets/Gemini_Generated_Image_c6ekuvc6ekuvc6ek.jpg";
 import divElectrical from "@/assets/div-electrical.jpg";
 import {
   missionPillars,
@@ -309,7 +310,7 @@ function Index() {
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {divisions.map((d, i) => {
               const Icon = divisionIcons[i % divisionIcons.length]!;
-              const img = i === 0 ? divChassis : i === 2 ? divElectrical : null;
+              const img = i === 0 ? divChassis : i === 1 ? divPowertrain : i === 2 ? divElectrical : null;
               return (
                 <article
                   key={d.name}
