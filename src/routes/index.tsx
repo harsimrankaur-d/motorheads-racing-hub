@@ -24,7 +24,7 @@ import {
 
 import heroKart from "@/assets/kart-hero.jpg.asset.json";
 import logoAsset from "@/assets/motorheads-logo.png.asset.json";
-import teamGroup from "@/assets/team-group.jpg";
+import teamGroup from "@/assets/WhatsApp_Image_2026-06-20_at_15.32.31.jpg";
 import divChassis from "@/assets/div-chassis.jpg";
 import divElectrical from "@/assets/div-electrical.jpg";
 import {
