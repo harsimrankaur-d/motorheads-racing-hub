@@ -20,7 +20,7 @@ import {
   Trophy,
 } from "lucide-react";
 
-import heroKartAsset from "@/assets/kart-hero.png.asset.json";
+import heroKartAsset from "@/assets/kart-hero-track.jpg.asset.json";
 import logoJson from "@/assets/motorheads-logo.png.asset.json";
 import teamGroup from "@/assets/WhatsApp_Image_2026-06-20_at_15.32.31.jpeg";
 import divChassis from "@/assets/div-chassis.jpg";
