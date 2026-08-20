@@ -46,8 +46,6 @@ import {
 const heroKart = heroKartAsset.url;
 const logoAsset = logoJson.url;
 
-
-
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -109,7 +107,15 @@ function SparkBackground() {
 }
 
 /* --- COUNT-UP ANIMATION COMPONENT --- */
-function CounterNumber({ target = 25, duration = 1500, suffix = "+" }: { target?: number; duration?: number; suffix?: string }) {
+function CounterNumber({
+  target = 25,
+  duration = 1500,
+  suffix = "+",
+}: {
+  target?: number;
+  duration?: number;
+  suffix?: string;
+}) {
   const [count, setCount] = useState(1);
   const [hasRun, setHasRun] = useState(false);
   const elementRef = useRef<HTMLSpanElement>(null);
@@ -145,6 +151,46 @@ function CounterNumber({ target = 25, duration = 1500, suffix = "+" }: { target?
       {count}
       {count >= target ? suffix : ""}
     </span>
+  );
+}
+
+/* --- ANIMATED SVG KART LINE-DRAWING --- */
+function KartLineDraw() {
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          setReady(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+    if (wrapRef.current) observer.observe(wrapRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={wrapRef} className="mx-auto w-full max-w-md">
+      <svg viewBox="0 0 400 180" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+        <path
+          d="M40 140 L40 120 Q40 100 60 100 L110 100 L130 70 Q140 55 160 55 L230 55 Q250 55 260 70 L280 100 L330 100 Q350 100 350 120 L350 140 M70 140 A20 20 0 1 0 70 139.9 M300 140 A20 20 0 1 0 300 139.9 M110 100 L140 100 M180 55 L180 100 M230 55 L260 100"
+          stroke="var(--primary)"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          pathLength={1}
+          style={{
+            strokeDasharray: 1,
+            strokeDashoffset: ready ? 0 : 1,
+            transition: "stroke-dashoffset 2.2s ease-in-out",
+          }}
+        />
+      </svg>
+    </div>
   );
 }
 
@@ -199,34 +245,33 @@ function Index() {
 
       {/* HERO */}
       <section id="top" className="relative flex min-h-[100svh] items-end overflow-hidden">
-      <img
-        src={heroKart}
-        alt="Motorheads go-kart racing on track at dusk"
-        className="absolute inset-0 h-full w-full object-cover object-center"
-      />
-      <div
-        className="absolute inset-0"
-        style={{ background: "var(--gradient-hero)" }}
-        aria-hidden
-      />
-      <div className="speed-lines absolute inset-x-0 bottom-0 h-40 opacity-40" aria-hidden />
-      <div className="relative mx-auto w-full max-w-7xl px-5 pb-24 pt-32">
-        
-        {/* BMSIT Logo */}
-        <div className="mb-4 flex items-center">
-          <img
-            src={bmsitLogo}
-            alt="BMSIT Logo"
-            className="h-48 w-auto object-contain filter drop-shadow-md"
-          />
-        </div>
-    
-        <div className="mb-5 inline-flex -skew-x-12 items-center gap-2 border border-primary/60 bg-primary/10 px-3 py-1">
-          <span className="skew-x-12 text-[11px] font-bold uppercase tracking-[0.3em] text-primary">
-            BMSIT&M · Bengaluru
-          </span>
-        </div>
-        <h1 className="max-w-4xl text-5xl leading-[0.85] sm:text-7xl lg:text-8xl">
+        <img
+          src={heroKart}
+          alt="Motorheads go-kart racing on track at dusk"
+          className="absolute inset-0 h-full w-full object-cover object-center"
+        />
+        <div
+          className="absolute inset-0"
+          style={{ background: "var(--gradient-hero)" }}
+          aria-hidden
+        />
+        <div className="speed-lines absolute inset-x-0 bottom-0 h-40 opacity-40" aria-hidden />
+        <div className="relative mx-auto w-full max-w-7xl px-5 pb-24 pt-32">
+          {/* BMSIT Logo */}
+          <div className="mb-4 flex items-center">
+            <img
+              src={bmsitLogo}
+              alt="BMSIT Logo"
+              className="h-48 w-auto object-contain filter drop-shadow-md"
+            />
+          </div>
+
+          <div className="mb-5 inline-flex -skew-x-12 items-center gap-2 border border-primary/60 bg-primary/10 px-3 py-1">
+            <span className="skew-x-12 text-[11px] font-bold uppercase tracking-[0.3em] text-primary">
+              BMSIT&M · Bengaluru
+            </span>
+          </div>
+          <h1 className="max-w-4xl text-5xl leading-[0.85] sm:text-7xl lg:text-8xl">
             Built to Race.
             <br />
             <span className="text-primary">Engineered to Win.</span>
@@ -306,7 +351,14 @@ function Index() {
             />
           </div>
         </div>
+
+        {/* Animated kart line-drawing */}
+        <div className="relative mx-auto mt-16 max-w-7xl px-5">
+          <KartLineDraw />
+        </div>
       </section>
+
+      <div className="angled-divider angled-divider--card" aria-hidden />
 
       {/* MISSION */}
       <section id="mission" className="relative overflow-hidden bg-card py-24">
@@ -320,7 +372,7 @@ function Index() {
               return (
                 <article
                   key={p.title}
-                  className="group border border-border bg-background p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-primary"
+                  className="group border border-border bg-background p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-primary hover:shadow-[var(--shadow-red)]"
                 >
                   <Icon className="h-8 w-8 text-primary" strokeWidth={2.2} />
                   <h3 className="mt-5 text-xl text-foreground">{p.title}</h3>
@@ -333,6 +385,8 @@ function Index() {
         </div>
       </section>
 
+      <div className="angled-divider-reverse angled-divider-reverse--background" aria-hidden />
+
       {/* DIVISIONS */}
       <section id="divisions" className="relative overflow-hidden border-y border-border py-24">
         <SparkBackground />
@@ -341,14 +395,14 @@ function Index() {
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {divisions.map((d, i) => {
               const Icon = divisionIcons[i % divisionIcons.length]!;
-              const img = 
-              i === 0 ? divChassis : 
-              i === 1 ? divPowertrain : 
-              i === 2 ? divElectrical : 
-              i === 3 ? divDynamics :  
-              i === 4 ? divCad :       
-              i === 5 ? divMarketing : 
-              null;
+              const img =
+                i === 0 ? divChassis :
+                i === 1 ? divPowertrain :
+                i === 2 ? divElectrical :
+                i === 3 ? divDynamics :
+                i === 4 ? divCad :
+                i === 5 ? divMarketing :
+                null;
               return (
                 <article
                   key={d.name}
@@ -379,11 +433,22 @@ function Index() {
         </div>
       </section>
 
+      <div className="angled-divider angled-divider--card" aria-hidden />
+
       {/* RACING */}
       <section id="racing" className="relative overflow-hidden bg-card py-24">
         <SparkBackground />
         <div className="relative mx-auto max-w-7xl px-5">
           <SectionTitle kicker="Our Journey" title="Competition & Achievements" />
+
+          {/* Ticking stat: competitions entered */}
+          <div className="mb-10 flex items-center gap-3">
+            <CounterNumber target={2} suffix="" duration={800} />
+            <span className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">
+              National Competitions Entered
+            </span>
+          </div>
+
           <div className="grid gap-5 lg:grid-cols-2">
             {[
               {
@@ -423,6 +488,8 @@ function Index() {
         </div>
       </section>
 
+      <div className="angled-divider-reverse angled-divider-reverse--background" aria-hidden />
+
       {/* SPONSOR */}
       <section id="sponsor" className="relative overflow-hidden border-y border-border py-24">
         <SparkBackground />
@@ -434,7 +501,7 @@ function Index() {
               return (
                 <article
                   key={r.title}
-                  className="group border-l-4 border-primary bg-card p-6 transition-all duration-300 hover:-translate-y-1.5 hover:bg-secondary"
+                  className="group border-l-4 border-primary bg-card p-6 transition-all duration-300 hover:-translate-y-1.5 hover:bg-secondary hover:shadow-[var(--shadow-red)]"
                 >
                   <Icon className="h-7 w-7 text-primary" strokeWidth={2.2} />
                   <h3 className="mt-5 text-xl text-foreground">{r.title}</h3>
@@ -461,6 +528,8 @@ function Index() {
           </div>
         </div>
       </section>
+
+      <div className="angled-divider angled-divider--card" aria-hidden />
 
       {/* TIERS */}
       <section id="tiers" className="relative overflow-hidden bg-card py-24">
@@ -502,30 +571,43 @@ function Index() {
         </div>
       </section>
 
+      <div className="angled-divider-reverse angled-divider-reverse--background" aria-hidden />
+
       {/* TIMELINE */}
       <section id="journey" className="relative overflow-hidden border-y border-border py-24">
         <SparkBackground />
         <div className="relative mx-auto max-w-4xl px-5">
           <SectionTitle kicker="Footprints of Excellence" title="The Road So Far" />
           <ol className="relative border-l-2 border-dashed border-border pl-8">
-            {timeline.map((t) => (
-              <li key={t.year + t.event} className="group relative pb-10 last:pb-0">
-                <span className="absolute -left-[41px] top-1 flex h-5 w-5 items-center justify-center border-2 border-primary bg-background transition-colors group-hover:bg-primary">
-                  <Trophy className="h-2.5 w-2.5 text-primary transition-colors group-hover:text-primary-foreground" />
-                </span>
-                <div className="flex flex-wrap items-baseline gap-3">
-                  <span className="skew-title text-2xl text-primary">{t.year}</span>
-                  <h3 className="text-2xl text-foreground">{t.event}</h3>
-                </div>
-                <p className="mt-1 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                  {t.place}
-                </p>
-                <p className="mt-2 text-sm text-muted-foreground">{t.note}</p>
-              </li>
-            ))}
+            {timeline.map((t) => {
+              const yearNum = parseInt(t.year, 10);
+              return (
+                <li key={t.year + t.event} className="group relative pb-10 last:pb-0">
+                  <span className="absolute -left-[41px] top-1 flex h-5 w-5 items-center justify-center border-2 border-primary bg-background transition-colors group-hover:bg-primary">
+                    <Trophy className="h-2.5 w-2.5 text-primary transition-colors group-hover:text-primary-foreground" />
+                  </span>
+                  <div className="flex flex-wrap items-baseline gap-3">
+                    <span className="skew-title text-2xl text-primary">
+                      {Number.isFinite(yearNum) ? (
+                        <CounterNumber target={yearNum} suffix="" duration={1800} />
+                      ) : (
+                        t.year
+                      )}
+                    </span>
+                    <h3 className="text-2xl text-foreground">{t.event}</h3>
+                  </div>
+                  <p className="mt-1 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                    {t.place}
+                  </p>
+                  <p className="mt-2 text-sm text-muted-foreground">{t.note}</p>
+                </li>
+              );
+            })}
           </ol>
         </div>
       </section>
+
+      <div className="angled-divider angled-divider--card" aria-hidden />
 
       {/* CONTACT */}
       <section id="contact" className="relative overflow-hidden bg-card py-24">
@@ -562,8 +644,8 @@ function Index() {
                 >
                   <Mail className="h-4 w-4 text-primary" /> vivekdb720@gmail.com
                 </a>
-                <a 
-                  href="tel:+919108920420" 
+                <a
+                  href="tel:+919108920420"
                   className="flex items-center gap-2 hover:text-primary transition-colors"
                 >
                   <Phone className="h-4 w-4 text-primary" /> +91 91089 20420
