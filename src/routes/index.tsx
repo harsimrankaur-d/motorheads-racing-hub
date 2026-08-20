@@ -25,7 +25,7 @@ import {
 
 import heroKartAsset from "@/assets/kart-hero.jpg.asset.json";
 const heroKart = heroKartAsset.url;
-import logoAsset from "@/assets/motorheads-logo.png";
+import logoAsset from "@/assets/motorheads-logo.png.asset.json";
 import teamGroup from "@/assets/team-group.jpg";
 import divChassis from "@/assets/div-chassis.jpg";
 import divElectrical from "@/assets/div-electrical.jpg";
