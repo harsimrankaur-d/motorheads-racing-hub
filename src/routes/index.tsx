@@ -30,7 +30,6 @@ import divChassis from "@/assets/div-chassis.jpg";
 import divPowertrain from "@/assets/Gemini_Generated_Image_c6ekuvc6ekuvc6ek.jpeg";
 import divElectrical from "@/assets/div-electrical.jpg";
 
-const heroKart = heroKartAsset.url;
 const logoAsset = logoJson.url;
 import {
   missionPillars,
