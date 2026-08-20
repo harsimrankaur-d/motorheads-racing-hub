@@ -737,6 +737,13 @@ function Index() {
       </section>
 
       {/* FOOTER */}
+      <a
+  href="#top"
+  aria-label="Scroll to top"
+  className="fixed bottom-6 right-6 z-50 flex h-12 w-12 -skew-x-12 items-center justify-center border border-primary bg-background/90 text-primary backdrop-blur-md hover:bg-primary hover:text-primary-foreground"
+>
+  <ChevronRight className="h-6 w-6 skew-x-12 -rotate-90" />
+</a>
       <footer className="bg-background">
         <div className="checker-strip h-4 opacity-90" aria-hidden />
         <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:grid-cols-3">
