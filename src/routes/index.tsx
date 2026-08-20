@@ -267,7 +267,7 @@ function Index() {
           <div className="relative">
             <div className="absolute -inset-3 -skew-y-2 border border-primary/30" aria-hidden />
             <img
-              src={teamGroup.url}
+              src={teamGroup}
               alt="Team Motorheads members with their go-kart"
               loading="lazy"
               width={1600}
