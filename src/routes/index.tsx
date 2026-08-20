@@ -99,7 +99,7 @@ function CounterNumber({ target = 25, duration = 1500, suffix = "+" }: { target?
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !hasRun) {
+        if (entry?.isIntersecting && !hasRun) {
           setHasRun(true);
           let start = 1;
           const stepTime = Math.abs(Math.floor(duration / target));
