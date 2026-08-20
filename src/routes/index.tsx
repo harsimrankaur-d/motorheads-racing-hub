@@ -160,7 +160,7 @@ function Index() {
       <header className="fixed inset-x-0 top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-md">
         <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5">
           <a href="#top" className="flex items-center gap-2">
-            <img src={logoAsset} alt="Motorheads logo" className="h-7 w-7 object-contain" />
+           <img src={logoAsset} alt="Motorheads logo" className="h-7 w-7 object-contain" />
             <span className="skew-title -skew-x-6 text-xl tracking-tight">MOTORHEADS</span>
           </a>
           <div className="hidden items-center gap-7 text-xs font-semibold uppercase tracking-widest text-muted-foreground lg:flex">
