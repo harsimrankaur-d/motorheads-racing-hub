@@ -165,13 +165,13 @@
 @utility speed-lines {
   background-image: repeating-linear-gradient(
     100deg,
-    color-mix(in oklab, var(--racing) 22%, transparent) 0px,
-    color-mix(in oklab, var(--racing) 22%, transparent) 2px,
-    transparent 2px,
-    transparent 16px
+    color-mix(in oklab, var(--racing) 65%, transparent) 0px,
+    color-mix(in oklab, var(--racing) 65%, transparent) 4px,
+    transparent 4px,
+    transparent 28px
   );
-  background-size: 200% 200%;
-  animation: speed-lines-move 6s linear infinite;
+  background-size: 300% 300%;
+  animation: speed-lines-move 3.5s linear infinite;
 }
 
 @keyframes speed-lines-move {
@@ -179,7 +179,7 @@
     background-position: 0% 0%;
   }
   to {
-    background-position: -100% 0%;
+    background-position: -150% 0%;
   }
 }
 
