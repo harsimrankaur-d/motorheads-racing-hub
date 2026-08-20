@@ -311,7 +311,7 @@ function Index() {
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {divisions.map((d, i) => {
               const Icon = divisionIcons[i % divisionIcons.length]!;
-              const img = i === 0 ? divChassis.url : i === 1 ? divPowertrain.url : i === 2 ? divElectrical.url : null;
+              const img = i === 0 ? divChassis : i === 1 ? divPowertrain : i === 2 ? divElectrical : null;
               return (
                 <article
                   key={d.name}
