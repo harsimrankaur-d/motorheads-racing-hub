@@ -561,14 +561,16 @@ function Index() {
                   className="flex items-center gap-2 hover:text-primary transition-colors"
                 >
                   <Mail className="h-4 w-4 text-primary" /> {TEAM_EMAIL}
+                </a>
                 <a
-  href="https://www.instagram.com/motor.heads_bmsit"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="flex items-center gap-2 hover:text-primary transition-colors"
->
-  <Instagram className="h-4 w-4 text-primary" /> @motor.heads_bmsit
-</a>
+                  href={INSTAGRAM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 hover:text-primary transition-colors"
+                >
+                  <Instagram className="h-4 w-4 text-primary" /> @motor.heads_bmsit
+                </a>
+
                 <a
                   href={LINKEDIN_URL}
                   target="_blank"
