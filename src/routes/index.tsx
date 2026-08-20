@@ -18,9 +18,6 @@ import {
   Instagram,
   Linkedin,
   Trophy,
-  Users,
-  TrendingUp,
-  Target,
 } from "lucide-react";
 
 import heroKartAsset from "@/assets/kart-hero.jpg.asset.json";
@@ -37,7 +34,6 @@ import bmsitLogo from "@/assets/BMS.png";
 import {
   missionPillars,
   divisions,
-  sponsorReasons,
   impactStats,
   tiers,
   timeline,
@@ -49,13 +45,13 @@ const logoAsset = logoJson.url;
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "MOTORHEADS BMSIT&M — Built to Race. Engineered to Win." },
+      { title: "MOTORHEADS BMSIT&M" },
       {
         name: "description",
         content:
           "MOTORHEADS is the official student motorsport and engineering team of BMSIT&M, Bengaluru — 25+ engineers building combustion and electric go-karts for national competition.",
       },
-      { property: "og:title", content: "MOTORHEADS — BMSIT&M Student Motorsport Team" },
+      { property: "og:title", content: "MOTORHEADS BMSIT&M" },
       {
         property: "og:description",
         content:
@@ -70,15 +66,46 @@ export const Route = createFileRoute("/")({
 
 const missionIcons = [Flag, Zap, GraduationCap, Briefcase];
 const divisionIcons = [Wrench, Cog, CircuitBoard, Gauge, Ruler, Megaphone];
-const reasonIcons = [Target, Users, Zap, TrendingUp];
 
 /* --- CONSTANTS FOR CLEAN EXTERNAL LINKS --- */
 const INSTAGRAM_URL = "https://www.instagram.com/motor.heads_bmsit";
 const LINKEDIN_URL = "https://www.linkedin.com/company/motor-heads-bmsit";
 const TEAM_EMAIL = "teammotorheads@bmsit.in";
-
-// Gmail web composer link with pre-filled recipient
 const GMAIL_COMPOSE_URL = `https://mail.google.com/mail/?view=cm&fs=1&to=${TEAM_EMAIL}`;
+
+/* --- SPONSORS DATA --- */
+const sponsorsData = [
+  {
+    name: "Vivitron Energy",
+    category: "Battery Partner",
+    logo: "/sponsors/vivitron.png",
+  },
+  {
+    name: "Simple Energy",
+    category: "Motor, Controller & Brakes",
+    logo: "/sponsors/simple-energy.png",
+  },
+  {
+    name: "Delhivery",
+    category: "Logistics Partner",
+    logo: "/sponsors/delhivery.png",
+  },
+  {
+    name: "Destinytion",
+    category: "Hospitality Partner",
+    logo: "/sponsors/destinytion.png",
+  },
+  {
+    name: "Caar Seva",
+    category: "Monetary (Tyres)",
+    logo: "/sponsors/caarseva.png",
+  },
+  {
+    name: "Namaah",
+    category: "Monetary (Kart Floor)",
+    logo: "/sponsors/namaah.png",
+  },
+];
 
 /* --- SPARK BACKGROUND COMPONENT --- */
 function SparkBackground() {
@@ -154,7 +181,7 @@ function CounterNumber({
   );
 }
 
-/* --- ANIMATED SVG KART LINE-DRAWING (E-183 Model Profile) --- */
+/* --- ANIMATED SVG KART LINE-DRAWING --- */
 function KartLineDraw() {
   const wrapRef = useRef<HTMLDivElement>(null);
   const [ready, setReady] = useState(false);
@@ -244,8 +271,8 @@ function Index() {
               ["Mission", "#mission"],
               ["Divisions", "#divisions"],
               ["Racing", "#racing"],
+              ["Sponsors", "#sponsor"],
               ["Journey", "#journey"],
-              ["Sponsor", "#sponsor"],
             ].map(([label, href]) => (
               <a key={href} href={href} className="transition-colors hover:text-primary">
                 {label}
@@ -275,7 +302,6 @@ function Index() {
         />
         <div className="speed-lines absolute inset-x-0 bottom-0 h-40 opacity-40" aria-hidden />
         <div className="relative mx-auto w-full max-w-7xl px-5 pb-24 pt-32">
-          {/* BMSIT Logo */}
           <div className="mb-4 flex items-center">
             <img
               src={bmsitLogo}
@@ -370,7 +396,6 @@ function Index() {
           </div>
         </div>
 
-        {/* Animated kart line-drawing */}
         <div className="relative mx-auto mt-16 max-w-7xl px-5">
           <KartLineDraw />
         </div>
@@ -459,7 +484,6 @@ function Index() {
         <div className="relative mx-auto max-w-7xl px-5">
           <SectionTitle kicker="Our Journey" title="Competition & Achievements" />
 
-          {/* Ticking stat: competitions entered */}
           <div className="mb-10 flex items-center gap-3">
             <CounterNumber target={2} suffix="" duration={800} />
             <span className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">
@@ -507,50 +531,67 @@ function Index() {
       </section>
 
       <div className="angled-divider-reverse angled-divider-reverse--background" aria-hidden />
-// 1. Array containing your specific sponsors & categories
-const sponsorsData = [
-  { name: "Vivitron Energy", category: "Battery Partner", logo: "/sponsors/vivitron.png" },
-  { name: "Simple Energy", category: "Motor, Controller & Brakes", logo: "/sponsors/simple-energy.png" },
-  { name: "Delhivery", category: "Logistics Partner", logo: "/sponsors/delhivery.png" },
-  { name: "Destinytion", category: "Hospitality Partner", logo: "/sponsors/destinytion.png" },
-  { name: "Caar Seva", category: "Monetary (Tyres)", logo: "/sponsors/caarseva.png" },
-  { name: "Namaah", category: "Monetary (Kart Floor)", logo: "/sponsors/namaah.png" },
-];
 
-// 2. JSX Block to paste inside your Sponsors Section
-<div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-  {sponsorsData.map((sponsor, index) => (
-    <div
-      key={index}
-      className="flex flex-col items-center justify-between rounded-lg border border-neutral-800 bg-neutral-950/80 p-6 transition-all duration-300 hover:border-yellow-500/50"
-    >
-      {/* Logo container */}
-      <div className="flex h-32 w-full items-center justify-center p-2">
-        {sponsor.logo ? (
-          <img
-            src={sponsor.logo}
-            alt={`${sponsor.name} logo`}
-            className="max-h-full max-w-full object-contain grayscale transition-all duration-300 hover:grayscale-0"
-          />
-        ) : (
-          <span className="text-sm font-semibold uppercase tracking-wider text-neutral-500">
-            {sponsor.name} Logo
-          </span>
-        )}
-      </div>
+      {/* SPONSORS SHOWCASE */}
+      <section id="sponsor" className="relative overflow-hidden border-y border-border py-24">
+        <SparkBackground />
+        <div className="relative mx-auto max-w-7xl px-5">
+          <SectionTitle kicker="Our Partners" title="Backed By Industry Leaders" />
 
-      {/* Text Details */}
-      <div className="mt-4 text-center">
-        <h4 className="text-lg font-bold tracking-tight text-white">
-          {sponsor.name}
-        </h4>
-        <p className="mt-1 text-xs font-medium tracking-wide text-neutral-400">
-          {sponsor.category}
-        </p>
-      </div>
-    </div>
-  ))}
-</div>
+          {/* Sponsor Cards Grid */}
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
+            {sponsorsData.map((sponsor, index) => (
+              <div
+                key={index}
+                className="group flex flex-col justify-between border border-border bg-card p-5 transition-all duration-300 hover:-translate-y-1.5 hover:border-primary hover:shadow-[var(--shadow-red)]"
+              >
+                {/* Logo Frame */}
+                <div className="flex h-32 w-full items-center justify-center border border-border/50 bg-background/50 p-3">
+                  <img
+                    src={sponsor.logo}
+                    alt={`${sponsor.name} logo`}
+                    className="max-h-full max-w-full object-contain grayscale opacity-80 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100"
+                    onError={(e) => {
+                      e.currentTarget.style.display = "none";
+                    }}
+                  />
+                  <span className="hidden text-xs font-bold tracking-widest text-muted-foreground uppercase group-hover:text-primary text-center">
+                    {sponsor.name}
+                  </span>
+                </div>
+
+                {/* Sponsor Label */}
+                <div className="mt-4 text-center">
+                  <h3 className="text-sm font-bold text-foreground tracking-wide">
+                    {sponsor.name}
+                  </h3>
+                  <p className="mt-1 text-xs font-medium text-muted-foreground">
+                    {sponsor.category}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Impact Stats Strip */}
+          <div className="mt-16 grid divide-y divide-border border border-border bg-card sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4 lg:divide-x">
+            {impactStats.map((s) => (
+              <div key={s.label} className="px-6 py-8">
+                {s.value === "25+" ? (
+                  <CounterNumber target={25} suffix="+" />
+                ) : (
+                  <div className="skew-title text-3xl text-primary sm:text-4xl">{s.value}</div>
+                )}
+                <div className="mt-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-muted-foreground">
+                  {s.label}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <div className="angled-divider angled-divider--card" aria-hidden />
 
       {/* TIERS */}
       <section id="tiers" className="relative overflow-hidden bg-card py-24">
@@ -681,7 +722,6 @@ const sponsorsData = [
                 >
                   <Instagram className="h-4 w-4 text-primary" /> @motor.heads_bmsit
                 </a>
-
                 <a
                   href={LINKEDIN_URL}
                   target="_blank"
@@ -721,6 +761,7 @@ const sponsorsData = [
               {[
                 ["About", "#about"],
                 ["Divisions", "#divisions"],
+                ["Sponsors", "#sponsor"],
                 ["Sponsorship Tiers", "#tiers"],
                 ["Our Journey", "#journey"],
                 ["Contact", "#contact"],
@@ -773,3 +814,5 @@ const sponsorsData = [
     </div>
   );
 }
+
+export default Index;
