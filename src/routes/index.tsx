@@ -23,10 +23,9 @@ import {
   Target,
 } from "lucide-react";
 
-import heroKartAsset from "@/assets/kart-hero.jpg.asset.json";
-const heroKart = heroKartAsset.url;
-import logoAsset from "@/assets/motorheads-logo.png.asset.json";
-import teamGroup from "@/assets/WhatsApp_Image_2026-06-20_at_15.32.31.jpeg";
+import heroKart from "@/assets/kart-hero.jpg";
+import logoAsset from "@/assets/motorheads-logo.png";
+import teamGroup from "@/assets/team-group.jpg";
 import divChassis from "@/assets/div-chassis.jpg";
 import divElectrical from "@/assets/div-electrical.jpg";
 import {
@@ -161,7 +160,7 @@ function Index() {
       <header className="fixed inset-x-0 top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-md">
         <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5">
           <a href="#top" className="flex items-center gap-2">
-           <img src={logoAsset.url} alt="Motorheads logo" className="h-7 w-7 object-contain" />
+            <img src={logoAsset} alt="Motorheads logo" className="h-7 w-7 object-contain" />
             <span className="skew-title -skew-x-6 text-xl tracking-tight">MOTORHEADS</span>
           </a>
           <div className="hidden items-center gap-7 text-xs font-semibold uppercase tracking-widest text-muted-foreground lg:flex">
@@ -556,17 +555,14 @@ function Index() {
                 >
                   <Mail className="h-4 w-4 text-primary" /> {TEAM_EMAIL}
                 </a>
-                <span className="flex items-center gap-2 text-muted-foreground">
-                  <Instagram className="h-4 w-4 text-primary" />
-                  <a
-                    href={INSTAGRAM_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-primary transition-colors"
-                  >
-                    @motor.heads_bmsit
-                  </a>
-                </span>
+                <a
+                  href={INSTAGRAM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 hover:text-primary transition-colors"
+                >
+                  <Instagram className="h-4 w-4 text-primary" /> @motor.heads_bmsit
+                </a>
                 <a
                   href={LINKEDIN_URL}
                   target="_blank"
@@ -592,7 +588,7 @@ function Index() {
         <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:grid-cols-3">
           <div>
             <div className="flex items-center gap-2">
-              <img src={logoAsset.url} alt="Motorheads logo" className="h-7 w-7 object-contain" />
+              <img src={logoAsset} alt="Motorheads logo" className="h-7 w-7 object-contain" />
               <span className="skew-title -skew-x-6 text-xl">MOTORHEADS</span>
             </div>
             <p className="mt-3 max-w-xs text-sm text-muted-foreground">
