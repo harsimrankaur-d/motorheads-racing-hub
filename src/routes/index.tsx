@@ -154,7 +154,7 @@ function CounterNumber({
   );
 }
 
-/* --- ANIMATED SVG KART LINE-DRAWING (Updated to match E-183 kart) --- */
+/* --- ANIMATED SVG KART LINE-DRAWING (E-183 Model Profile) --- */
 function KartLineDraw() {
   const wrapRef = useRef<HTMLDivElement>(null);
   const [ready, setReady] = useState(false);
@@ -176,7 +176,6 @@ function KartLineDraw() {
   return (
     <div ref={wrapRef} className="mx-auto w-full max-w-lg">
       <svg viewBox="0 0 450 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-        {/* E-183 Custom Chassis Profile & Aero Shell */}
         <path
           d="
             M 30 160
@@ -556,68 +555,59 @@ function Index() {
         <div className="relative mx-auto max-w-7xl px-5">
           <SectionTitle kicker="Sponsorship Tiers" title="Pick Your Grid Position" />
           <div className="flex flex-wrap justify-center gap-5">
-          {tiers.map((t) => (
-  <article
-    key={t.name}
-    className="group flex w-full flex-col border border-border bg-background p-7 transition-all duration-300 hover:-translate-y-2 hover:border-primary hover:shadow-[var(--shadow-red)] md:w-[calc(50%-10px)] lg:w-[calc(33.333%-14px)]"
-  >
-    <span className="w-fit -skew-x-12 border border-primary/50 px-2 py-1 text-[10px] font-bold uppercase tracking-widest text-primary">
-      {t.tag}
-    </span>
-    <h3 className="mt-4 text-2xl leading-tight text-foreground">{t.name}</h3>
-    <div className="mt-4 h-px w-full bg-border" />
-    <ul className="mt-5 flex-1 space-y-3">
-      {t.benefits.map((b) => (
-        <li key={b} className="flex gap-2 text-sm leading-relaxed text-muted-foreground">
-          <ChevronRight className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-          <span>{b}</span>
-        </li>
-      ))}
-    </ul>
-    <a
-      href="#contact"
-      className="mt-7 inline-flex w-fit -skew-x-12 items-center gap-1 border border-foreground/25 px-5 py-2.5 text-xs font-bold uppercase tracking-widest transition-colors hover:border-primary hover:bg-primary hover:text-primary-foreground"
-    >
-      <span className="skew-x-12">Enquire</span>
-    </a>
-  </article>
-))}
+            {tiers.map((t) => (
+              <article
+                key={t.name}
+                className="group flex w-full flex-col border border-border bg-background p-7 transition-all duration-300 hover:-translate-y-2 hover:border-primary hover:shadow-[var(--shadow-red)] md:w-[calc(50%-10px)] lg:w-[calc(33.333%-14px)]"
+              >
+                <span className="w-fit -skew-x-12 border border-primary/50 px-2 py-1 text-[10px] font-bold uppercase tracking-widest text-primary">
+                  {t.tag}
+                </span>
+                <h3 className="mt-4 text-2xl leading-tight text-foreground">{t.name}</h3>
+                <div className="mt-4 h-px w-full bg-border" />
+                <ul className="mt-5 flex-1 space-y-3">
+                  {t.benefits.map((b) => (
+                    <li key={b} className="flex gap-2 text-sm leading-relaxed text-muted-foreground">
+                      <ChevronRight className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href="#contact"
+                  className="mt-7 inline-flex w-fit -skew-x-12 items-center gap-1 border border-foreground/25 px-5 py-2.5 text-xs font-bold uppercase tracking-widest transition-colors hover:border-primary hover:bg-primary hover:text-primary-foreground"
+                >
+                  <span className="skew-x-12">Enquire</span>
+                </a>
+              </article>
+            ))}
           </div>
         </div>
       </section>
 
       <div className="angled-divider-reverse angled-divider-reverse--background" aria-hidden />
 
-      {/* TIMELINE */}
+      {/* TIMELINE / JOURNEY */}
       <section id="journey" className="relative overflow-hidden border-y border-border py-24">
         <SparkBackground />
         <div className="relative mx-auto max-w-4xl px-5">
           <SectionTitle kicker="Footprints of Excellence" title="The Road So Far" />
           <ol className="relative border-l-2 border-dashed border-border pl-8">
-            {timeline.map((t) => {
-              const yearNum = parseInt(t.year, 10);
-              return (
-                <li key={t.year + t.event} className="group relative pb-10 last:pb-0">
-                  <span className="absolute -left-[41px] top-1 flex h-5 w-5 items-center justify-center border-2 border-primary bg-background transition-colors group-hover:bg-primary">
-                    <Trophy className="h-2.5 w-2.5 text-primary transition-colors group-hover:text-primary-foreground" />
-                  </span>
-                  <div className="flex flex-wrap items-baseline gap-3">
-                    <span className="skew-title text-2xl text-primary">
-                      {Number.isFinite(yearNum) ? (
-                        <CounterNumber target={yearNum} suffix="" duration={1800} />
-                      ) : (
-                        t.year
-                      )}
-                    </span>
-                    <h3 className="text-2xl text-foreground">{t.event}</h3>
-                  </div>
-                  <p className="mt-1 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                    {t.place}
-                  </p>
-                  <p className="mt-2 text-sm text-muted-foreground">{t.note}</p>
-                </li>
-              );
-            })}
+            {timeline.map((t) => (
+              <li key={t.year + t.event} className="group relative pb-10 last:pb-0">
+                <span className="absolute -left-[41px] top-1 flex h-5 w-5 items-center justify-center border-2 border-primary bg-background transition-colors group-hover:bg-primary">
+                  <Trophy className="h-2.5 w-2.5 text-primary transition-colors group-hover:text-primary-foreground" />
+                </span>
+                <div className="flex flex-wrap items-baseline gap-3">
+                  <span className="skew-title text-2xl text-primary">{t.year}</span>
+                  <h3 className="text-2xl text-foreground">{t.event}</h3>
+                </div>
+                <p className="mt-1 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                  {t.place}
+                </p>
+                <p className="mt-2 text-sm text-muted-foreground">{t.note}</p>
+              </li>
+            ))}
           </ol>
         </div>
       </section>
