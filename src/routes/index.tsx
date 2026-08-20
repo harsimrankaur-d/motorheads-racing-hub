@@ -20,7 +20,7 @@ import {
   Trophy,
 } from "lucide-react";
 
-import heroKartAsset from "@/assets/kart-hero-track.jpg.asset.json";
+import heroKartAsset from "@/assets/kart-hero.jpg.asset.json";
 import logoJson from "@/assets/motorheads-logo.png.asset.json";
 import teamGroup from "@/assets/WhatsApp_Image_2026-06-20_at_15.32.31.jpeg";
 import divChassis from "@/assets/div-chassis.jpg";
@@ -256,6 +256,21 @@ function SectionTitle({ kicker, title }: { kicker?: string; title: string }) {
 }
 
 function Index() {
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 500) {
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       {/* NAV */}
@@ -293,7 +308,7 @@ function Index() {
         <img
           src={heroKart}
           alt="Motorheads go-kart racing on track at dusk"
-          className="absolute inset-0 h-full w-full object-cover object-center"
+          className="absolute inset-0 h-full w-full object-cover object-[70%_center] sm:object-center"
         />
         <div
           className="absolute inset-0"
@@ -301,35 +316,35 @@ function Index() {
           aria-hidden
         />
         <div className="speed-lines absolute inset-x-0 bottom-0 h-40 opacity-40" aria-hidden />
-        <div className="relative mx-auto w-full max-w-7xl px-5 pb-24 pt-32">
+        <div className="relative mx-auto w-full max-w-7xl px-5 pb-16 pt-28 sm:pb-24 sm:pt-32">
           <div className="mb-4 flex items-center">
             <img
               src={bmsitLogo}
               alt="BMSIT Logo"
-              className="h-48 w-auto object-contain filter drop-shadow-md"
+              className="h-20 w-auto object-contain filter drop-shadow-md sm:h-36 lg:h-48"
             />
           </div>
-          
-          <h1 className="max-w-4xl text-5xl leading-[0.85] sm:text-7xl lg:text-8xl">
+
+          <h1 className="max-w-4xl text-4xl leading-[0.85] sm:text-7xl lg:text-8xl">
             Built to Race.
             <br />
             <span className="text-primary">Engineered to Win.</span>
           </h1>
-          <p className="mt-6 max-w-xl text-base text-muted-foreground sm:text-lg">
+          <p className="mt-4 max-w-xl text-sm text-muted-foreground sm:mt-6 sm:text-lg">
             The official student motorsport and engineering team of BMS Institute of Technology and
             Management — designing, fabricating and racing our own combustion and electric go-karts.
           </p>
-          <div className="mt-9 flex flex-wrap items-center gap-4">
+          <div className="mt-8 flex flex-wrap items-center gap-4">
             <a
               href="#sponsor"
-              className="group inline-flex -skew-x-12 items-center gap-2 bg-primary px-7 py-4 text-sm font-bold uppercase tracking-widest text-primary-foreground transition-all hover:bg-accent hover:shadow-[var(--shadow-red)]"
+              className="group inline-flex -skew-x-12 items-center gap-2 bg-primary px-6 py-3.5 text-xs font-bold uppercase tracking-widest text-primary-foreground transition-all hover:bg-accent hover:shadow-[var(--shadow-red)] sm:px-7 sm:py-4 sm:text-sm"
             >
               <span className="skew-x-12">Partner With Us</span>
               <ChevronRight className="h-4 w-4 skew-x-12 transition-transform group-hover:translate-x-1" />
             </a>
             <a
               href="#about"
-              className="inline-flex -skew-x-12 items-center gap-2 border border-foreground/30 px-7 py-4 text-sm font-bold uppercase tracking-widest text-foreground transition-colors hover:border-primary hover:text-primary"
+              className="inline-flex -skew-x-12 items-center gap-2 border border-foreground/30 px-6 py-3.5 text-xs font-bold uppercase tracking-widest text-foreground transition-colors hover:border-primary hover:text-primary sm:px-7 sm:py-4 sm:text-sm"
             >
               <span className="skew-x-12">Meet the Team</span>
             </a>
@@ -737,13 +752,6 @@ function Index() {
       </section>
 
       {/* FOOTER */}
-      <a
-  href="#top"
-  aria-label="Scroll to top"
-  className="fixed bottom-6 right-6 z-50 flex h-12 w-12 -skew-x-12 items-center justify-center border border-primary bg-background/90 text-primary backdrop-blur-md hover:bg-primary hover:text-primary-foreground"
->
-  <ChevronRight className="h-6 w-6 skew-x-12 -rotate-90" />
-</a>
       <footer className="bg-background">
         <div className="checker-strip h-4 opacity-90" aria-hidden />
         <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:grid-cols-3">
@@ -813,6 +821,19 @@ function Index() {
           © {new Date().getFullYear()} Team Motorheads · BMSIT&M
         </div>
       </footer>
+
+      {/* SLEEK FLOATING SCROLL TO TOP BUTTON */}
+      <a
+        href="#top"
+        aria-label="Scroll to top"
+        className={`fixed bottom-6 right-6 z-50 flex h-11 w-11 items-center justify-center rounded-full border border-primary/50 bg-neutral-950/80 text-primary shadow-lg shadow-primary/20 backdrop-blur-md transition-all duration-300 hover:scale-110 hover:border-primary hover:bg-primary hover:text-black ${
+          showScrollTop
+            ? "translate-y-0 opacity-100 pointer-events-auto"
+            : "translate-y-10 opacity-0 pointer-events-none"
+        }`}
+      >
+        <ChevronRight className="h-5 w-5 -rotate-90 stroke-[2.5]" />
+      </a>
     </div>
   );
 }
