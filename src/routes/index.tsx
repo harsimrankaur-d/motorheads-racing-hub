@@ -217,7 +217,7 @@ function Index() {
           <img
             src={bmsitLogo}
             alt="BMSIT Logo"
-            className="h-24 w-auto object-contain filter drop-shadow-md"
+            className="h-40 w-auto object-contain filter drop-shadow-md"
           />
         </div>
     
