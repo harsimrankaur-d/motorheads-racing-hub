@@ -23,8 +23,9 @@ import {
   Target,
 } from "lucide-react";
 
-import heroKart from "@/assets/kart-hero.jpg";
-import logoAsset from "@/assets/motorheads-logo.png";
+import heroKartAsset from "@/assets/kart-hero.jpg.asset.json";
+const heroKart = heroKartAsset.url;
+import logoAsset from "@/assets/motorheads-logo.png.asset.json";
 import teamGroup from "@/assets/team-group.jpg";
 import divChassis from "@/assets/div-chassis.jpg";
 import divElectrical from "@/assets/div-electrical.jpg";
@@ -106,7 +107,7 @@ function CounterNumber({ target = 25, duration = 1500, suffix = "+" }: { target?
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !hasRun) {
+        if (entry?.isIntersecting && !hasRun) {
           setHasRun(true);
           let start = 1;
           const stepTime = Math.abs(Math.floor(duration / target));
@@ -160,7 +161,7 @@ function Index() {
       <header className="fixed inset-x-0 top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-md">
         <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5">
           <a href="#top" className="flex items-center gap-2">
-           <img src={logoAsset} alt="Motorheads logo" className="h-7 w-7 object-contain" />
+           <img src={logoAsset.url} alt="Motorheads logo" className="h-7 w-7 object-contain" />
             <span className="skew-title -skew-x-6 text-xl tracking-tight">MOTORHEADS</span>
           </a>
           <div className="hidden items-center gap-7 text-xs font-semibold uppercase tracking-widest text-muted-foreground lg:flex">
@@ -588,7 +589,7 @@ function Index() {
         <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:grid-cols-3">
           <div>
             <div className="flex items-center gap-2">
-              <img src={logoAsset} alt="Motorheads logo" className="h-7 w-7 object-contain" />
+              <img src={logoAsset.url} alt="Motorheads logo" className="h-7 w-7 object-contain" />
               <span className="skew-title -skew-x-6 text-xl">MOTORHEADS</span>
             </div>
             <p className="mt-3 max-w-xs text-sm text-muted-foreground">
