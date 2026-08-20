@@ -23,11 +23,10 @@ import {
   Target,
 } from "lucide-react";
 
-import heroKart from "@/assets/kart-hero.jpg.asset.json";
-import logoAsset from "@/assets/motorheads-logo.png.asset.json";
+import heroKart from "@/assets/kart-hero.jpg";
+import logoAsset from "@/assets/motorheads-logo.png";
 import teamGroup from "@/assets/team-group.jpg";
 import divChassis from "@/assets/div-chassis.jpg";
-import divPowertrain from "@/assets/div-powertrain.jpg";
 import divElectrical from "@/assets/div-electrical.jpg";
 import {
   missionPillars,
@@ -64,6 +63,14 @@ const missionIcons = [Flag, Zap, GraduationCap, Briefcase];
 const divisionIcons = [Wrench, Cog, CircuitBoard, Gauge, Ruler, Megaphone];
 const reasonIcons = [Target, Users, Zap, TrendingUp];
 
+/* --- CONSTANTS FOR CLEAN EXTERNAL LINKS --- */
+const INSTAGRAM_URL = "https://www.instagram.com/motor.heads_bmsit";
+const LINKEDIN_URL = "https://www.linkedin.com/company/motor-heads-bmsit";
+const TEAM_EMAIL = "teammotorheads@bmsit.in";
+
+// Gmail web composer link with pre-filled recipient
+const GMAIL_COMPOSE_URL = `https://mail.google.com/mail/?view=cm&fs=1&to=${TEAM_EMAIL}`;
+
 /* --- SPARK BACKGROUND COMPONENT --- */
 function SparkBackground() {
   return (
@@ -99,7 +106,7 @@ function CounterNumber({ target = 25, duration = 1500, suffix = "+" }: { target?
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry?.isIntersecting && !hasRun) {
+        if (entry.isIntersecting && !hasRun) {
           setHasRun(true);
           let start = 1;
           const stepTime = Math.abs(Math.floor(duration / target));
@@ -153,7 +160,7 @@ function Index() {
       <header className="fixed inset-x-0 top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-md">
         <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5">
           <a href="#top" className="flex items-center gap-2">
-            <img src={logoAsset.url} alt="Motorheads logo" className="h-7 w-7 object-contain" />
+            <img src={logoAsset} alt="Motorheads logo" className="h-7 w-7 object-contain" />
             <span className="skew-title -skew-x-6 text-xl tracking-tight">MOTORHEADS</span>
           </a>
           <div className="hidden items-center gap-7 text-xs font-semibold uppercase tracking-widest text-muted-foreground lg:flex">
@@ -182,7 +189,7 @@ function Index() {
       {/* HERO */}
       <section id="top" className="relative flex min-h-[100svh] items-end overflow-hidden">
         <img
-          src={heroKart.url}
+          src={heroKart}
           alt="Motorheads go-kart racing on track at dusk"
           className="absolute inset-0 h-full w-full object-cover object-center"
         />
@@ -222,10 +229,12 @@ function Index() {
               <span className="skew-x-12">Meet the Team</span>
             </a>
             <a
-              href="mailto:teammotorheads@bmsit.in"
+              href={GMAIL_COMPOSE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground transition-colors hover:text-primary"
             >
-              <Mail className="h-4 w-4" /> teammotorheads@bmsit.in
+              <Mail className="h-4 w-4" /> {TEAM_EMAIL}
             </a>
           </div>
         </div>
@@ -311,7 +320,7 @@ function Index() {
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {divisions.map((d, i) => {
               const Icon = divisionIcons[i % divisionIcons.length]!;
-              const img = i === 0 ? divChassis : i === 1 ? divPowertrain : i === 2 ? divElectrical : null;
+              const img = i === 0 ? divChassis : i === 2 ? divElectrical : null;
               return (
                 <article
                   key={d.name}
@@ -502,7 +511,9 @@ function Index() {
               a machine that runs at India's national circuits.
             </p>
             <a
-              href="mailto:teammotorheads@bmsit.in"
+              href={GMAIL_COMPOSE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="mt-8 inline-flex -skew-x-12 items-center gap-2 bg-primary px-7 py-4 text-sm font-bold uppercase tracking-widest text-primary-foreground transition-all hover:bg-accent hover:shadow-[var(--shadow-red)]"
             >
               <span className="skew-x-12">Start the Conversation</span>
@@ -516,7 +527,9 @@ function Index() {
               <h3 className="mt-2 text-2xl text-foreground">Vivek D B</h3>
               <div className="mt-4 space-y-2 text-sm text-muted-foreground">
                 <a
-                  href="mailto:vivekdb720@gmail.com"
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=vivekdb720@gmail.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center gap-2 hover:text-primary transition-colors"
                 >
                   <Mail className="h-4 w-4 text-primary" /> vivekdb720@gmail.com
@@ -535,13 +548,15 @@ function Index() {
               </p>
               <div className="mt-4 space-y-2 text-sm text-muted-foreground">
                 <a
-                  href="mailto:teammotorheads@bmsit.in"
+                  href={GMAIL_COMPOSE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center gap-2 hover:text-primary transition-colors"
                 >
-                  <Mail className="h-4 w-4 text-primary" /> teammotorheads@bmsit.in
+                  <Mail className="h-4 w-4 text-primary" /> {TEAM_EMAIL}
                 </a>
                 <a
-                  href="https://www.instagram.com/motor.heads_bmsit?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                  href={INSTAGRAM_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 hover:text-primary transition-colors"
@@ -549,7 +564,7 @@ function Index() {
                   <Instagram className="h-4 w-4 text-primary" /> @motor.heads_bmsit
                 </a>
                 <a
-                  href="https://www.linkedin.com/company/motor-heads-bmsit/posts/?feedView=all"
+                  href={LINKEDIN_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 hover:text-primary transition-colors"
@@ -573,7 +588,7 @@ function Index() {
         <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:grid-cols-3">
           <div>
             <div className="flex items-center gap-2">
-              <img src={logoAsset.url} alt="Motorheads logo" className="h-7 w-7 object-contain" />
+              <img src={logoAsset} alt="Motorheads logo" className="h-7 w-7 object-contain" />
               <span className="skew-title -skew-x-6 text-xl">MOTORHEADS</span>
             </div>
             <p className="mt-3 max-w-xs text-sm text-muted-foreground">
@@ -603,7 +618,7 @@ function Index() {
             <h4 className="text-sm tracking-widest text-foreground">Follow</h4>
             <div className="mt-4 flex gap-3">
               <a
-                href="https://www.instagram.com/motor.heads_bmsit?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                href={INSTAGRAM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -612,7 +627,7 @@ function Index() {
                 <Instagram className="h-5 w-5" />
               </a>
               <a
-                href="https://www.linkedin.com/company/motor-heads-bmsit/posts/?feedView=all"
+                href={LINKEDIN_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
@@ -621,7 +636,9 @@ function Index() {
                 <Linkedin className="h-5 w-5" />
               </a>
               <a
-                href="mailto:teammotorheads@bmsit.in"
+                href={GMAIL_COMPOSE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Email"
                 className="border border-border p-2.5 transition-colors hover:border-primary hover:text-primary"
               >
