@@ -23,14 +23,13 @@ import {
   Target,
 } from "lucide-react";
 
-import heroKart from "@/assets/kart-hero.jpg";
-import logoAsset from "@/assets/motorheads-logo.png";
+import heroKartAsset from "@/assets/kart-hero.jpg.asset.json";
+import logoJson from "@/assets/motorheads-logo.png.asset.json";
 import teamGroup from "@/assets/WhatsApp_Image_2026-06-20_at_15.32.31.jpeg";
 import divChassis from "@/assets/div-chassis.jpg";
-import divPowertrain from "@/assets/Gemini_Generated_Image_c6ekuvc6ekuvc6ek.jpeg";
+import divPowertrain from "@/assets/Gemini_Generated_Image_c6ekuvc6ekuvc6ek.jpg";
 import divElectrical from "@/assets/div-electrical.jpg";
 
-const logoAsset = logoJson.url;
 import {
   missionPillars,
   divisions,
