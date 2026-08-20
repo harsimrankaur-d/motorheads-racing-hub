@@ -215,7 +215,7 @@ function Index() {
         {/* BMSIT Logo */}
         <div className="mb-4 flex items-center">
           <img
-            src={bmsLogo}
+            src={bmsitLogo}
             alt="BMSIT Logo"
             className="h-12 w-auto object-contain filter drop-shadow-md"
           />
