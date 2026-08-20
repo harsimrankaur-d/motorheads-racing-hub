@@ -556,14 +556,17 @@ function Index() {
                 >
                   <Mail className="h-4 w-4 text-primary" /> {TEAM_EMAIL}
                 </a>
-                <a
-                  href={INSTAGRAM_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 hover:text-primary transition-colors"
-                >
-                  <Instagram className="h-4 w-4 text-primary" /> @motor.heads_bmsit
-                </a>
+                <span className="flex items-center gap-2 text-muted-foreground">
+                  <Instagram className="h-4 w-4 text-primary" />
+                  <a
+                    href={INSTAGRAM_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-primary transition-colors"
+                  >
+                    @motor.heads_bmsit
+                  </a>
+                </span>
                 <a
                   href={LINKEDIN_URL}
                   target="_blank"
