@@ -25,10 +25,10 @@ import {
 
 import heroKart from "@/assets/kart-hero.jpg.asset.json";
 import logoAsset from "@/assets/motorheads-logo.png.asset.json";
-import teamGroup from "@/assets/team-group.jpg.asset.json";
-import divChassis from "@/assets/div-chassis.jpg.asset.json";
-import divPowertrain from "@/assets/div-powertrain.jpg.asset.json";
-import divElectrical from "@/assets/div-electrical.jpg.asset.json";
+import teamGroup from "@/assets/team-group.jpg";
+import divChassis from "@/assets/div-chassis.jpg";
+import divPowertrain from "@/assets/div-powertrain.jpg";
+import divElectrical from "@/assets/div-electrical.jpg";
 import {
   missionPillars,
   divisions,
