@@ -29,6 +29,9 @@ import teamGroup from "@/assets/WhatsApp_Image_2026-06-20_at_15.32.31.jpeg";
 import divChassis from "@/assets/div-chassis.jpg";
 import divPowertrain from "@/assets/Gemini_Generated_Image_c6ekuvc6ekuvc6ek.jpg";
 import divElectrical from "@/assets/div-electrical.jpg";
+import divDynamics from "@/assets/aero.jpg";
+import divCad from "@/assets/3D.jpg";
+import divMarketing from "@/assets/market.jpg";
 
 import {
   missionPillars,
@@ -327,7 +330,14 @@ function Index() {
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {divisions.map((d, i) => {
               const Icon = divisionIcons[i % divisionIcons.length]!;
-              const img = i === 0 ? divChassis : i === 1 ? divPowertrain : i === 2 ? divElectrical : null;
+              const img = 
+              i === 0 ? divChassis : 
+              i === 1 ? divPowertrain : 
+              i === 2 ? divElectrical : 
+              i === 3 ? divDynamics :  
+              i === 4 ? divCad :       
+              i === 5 ? divMarketing : 
+              null;
               return (
                 <article
                   key={d.name}
