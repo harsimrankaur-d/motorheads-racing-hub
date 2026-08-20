@@ -170,6 +170,17 @@
     transparent 2px,
     transparent 16px
   );
+  background-size: 200% 200%;
+  animation: speed-lines-move 6s linear infinite;
+}
+
+@keyframes speed-lines-move {
+  from {
+    background-position: 0% 0%;
+  }
+  to {
+    background-position: -100% 0%;
+  }
 }
 
 @utility red-bar {
@@ -177,4 +188,3 @@
   padding-left: 1rem;
   border-left: 4px solid var(--racing);
 }
-
