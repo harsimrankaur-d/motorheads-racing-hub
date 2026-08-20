@@ -39,6 +39,11 @@ import {
   timeline,
 } from "@/lib/motorheads-data";
 
+const heroKart = heroKartAsset.url;
+const logoAsset = logoJson.url;
+
+
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
