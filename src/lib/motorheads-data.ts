@@ -121,10 +121,10 @@ export const tiers = [
 ];
 
 export const timeline = [
-  { year: "2019", event: "IKR", place: "India", note: "Best Acceleration Award" },
-  { year: "2020", event: "IKR", place: "India", note: "Future Stars recognition" },
-  { year: "2023", event: "IKR", place: "India", note: "Full combustion kart campaign" },
-  { year: "2025", event: "SEVC", place: "Chennai", note: "Best Design Award" },
-  { year: "Feb 2026", event: "GKDC", place: "Kari Motor Speedway, Coimbatore", note: "National go-kart design challenge" },
-  { year: "Mar 2026", event: "EKVC", place: "Hindustan College of Engineering & Kari Motor Speedway", note: "Best Cost Award" },
+  { year: "2019", event: "IKR", place: "BUDDHA INTERNATIONAL CIRCUIT, NOIDA", note: "Best Acceleration Award" },
+  { year: "2020", event: "IKR", place: "BUDDHA INTERNATIONAL CIRCUIT, NOIDA", note: "Future Stars recognition" },
+  { year: "2023", event: "IKR", place: "BUDDHA INTERNATIONAL CIRCUIT, NOIDA", note: "Full combustion kart campaign" },
+  { year: "2025", event: "SEVC", place: "HINDUSTAN COLLEGE OF ENGINEERING & KARI MOTOR SPEEDWAY, COIMBATORE", note: "Best Design Award" },
+  { year: "Feb 2026", event: "GKDC", place: "HINDUSTAN COLLEGE OF ENGINEERING & KARI MOTOR SPEEDWAY, COIMBATORE", note: "National go-kart design challenge" },
+  { year: "Mar 2026", event: "EKVC", place: "HINDUSTAN COLLEGE OF ENGINEERING & KARI MOTOR SPEEDWAY, COIMBATORE", note: "Best Cost Award" },
 ];
