@@ -309,12 +309,7 @@ function Index() {
               className="h-48 w-auto object-contain filter drop-shadow-md"
             />
           </div>
-
-          <div className="mb-5 inline-flex -skew-x-12 items-center gap-2 border border-primary/60 bg-primary/10 px-3 py-1">
-            <span className="skew-x-12 text-[11px] font-bold uppercase tracking-[0.3em] text-primary">
-              BMSIT&M · Bengaluru
-            </span>
-          </div>
+          
           <h1 className="max-w-4xl text-5xl leading-[0.85] sm:text-7xl lg:text-8xl">
             Built to Race.
             <br />
