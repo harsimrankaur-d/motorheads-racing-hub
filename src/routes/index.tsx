@@ -154,7 +154,7 @@ function CounterNumber({
   );
 }
 
-/* --- ANIMATED SVG KART LINE-DRAWING --- */
+/* --- ANIMATED SVG KART LINE-DRAWING (Updated to match E-183 kart) --- */
 function KartLineDraw() {
   const wrapRef = useRef<HTMLDivElement>(null);
   const [ready, setReady] = useState(false);
@@ -174,10 +174,29 @@ function KartLineDraw() {
   }, []);
 
   return (
-    <div ref={wrapRef} className="mx-auto w-full max-w-md">
-      <svg viewBox="0 0 400 180" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+    <div ref={wrapRef} className="mx-auto w-full max-w-lg">
+      <svg viewBox="0 0 450 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+        {/* E-183 Custom Chassis Profile & Aero Shell */}
         <path
-          d="M40 140 L40 120 Q40 100 60 100 L110 100 L130 70 Q140 55 160 55 L230 55 Q250 55 260 70 L280 100 L330 100 Q350 100 350 120 L350 140 M70 140 A20 20 0 1 0 70 139.9 M300 140 A20 20 0 1 0 300 139.9 M110 100 L140 100 M180 55 L180 100 M230 55 L260 100"
+          d="
+            M 30 160
+            L 10 160 L 10 145 L 45 145 L 80 135 
+            L 140 135 L 150 110 L 175 110 L 185 135
+            L 210 130 
+            Q 215 90 230 85 Q 245 80 250 130
+            L 280 125
+            L 280 40 L 305 40 L 305 125
+            L 380 125 L 400 135 L 440 135 L 440 160 Z
+            
+            M 292.5 40 L 292.5 25 M 287 25 L 298 25 M 292.5 25 L 292.5 15
+            
+            M 140 135 L 85 150 L 230 150
+            
+            M 225 130 L 255 120 L 275 130
+            
+            M 80 160 A 22 22 0 1 0 80 159.9
+            M 360 160 A 24 24 0 1 0 360 159.9
+          "
           stroke="var(--primary)"
           strokeWidth="3"
           strokeLinecap="round"
@@ -186,7 +205,7 @@ function KartLineDraw() {
           style={{
             strokeDasharray: 1,
             strokeDashoffset: ready ? 0 : 1,
-            transition: "stroke-dashoffset 2.2s ease-in-out",
+            transition: "stroke-dashoffset 2.5s ease-in-out",
           }}
         />
       </svg>
