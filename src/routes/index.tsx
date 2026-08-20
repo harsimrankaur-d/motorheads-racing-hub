@@ -25,10 +25,10 @@ import {
 
 import heroKart from "@/assets/kart-hero.jpg.asset.json";
 import logoAsset from "@/assets/motorheads-logo.png.asset.json";
-import teamGroup from "@/assets/team-group.jpg.asset.json";
-import divChassis from "@/assets/div-chassis.jpg.asset.json";
-import divPowertrain from "@/assets/div-powertrain.jpg.asset.json";
-import divElectrical from "@/assets/div-electrical.jpg.asset.json";
+import teamGroup from "@/assets/team-group.jpg";
+import divChassis from "@/assets/div-chassis.jpg";
+import divPowertrain from "@/assets/div-powertrain.jpg";
+import divElectrical from "@/assets/div-electrical.jpg";
 import {
   missionPillars,
   divisions,
@@ -99,7 +99,7 @@ function CounterNumber({ target = 25, duration = 1500, suffix = "+" }: { target?
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !hasRun) {
+        if (entry?.isIntersecting && !hasRun) {
           setHasRun(true);
           let start = 1;
           const stepTime = Math.abs(Math.floor(duration / target));
@@ -267,7 +267,7 @@ function Index() {
           <div className="relative">
             <div className="absolute -inset-3 -skew-y-2 border border-primary/30" aria-hidden />
             <img
-              src={teamGroup.url}
+              src={teamGroup}
               alt="Team Motorheads members with their go-kart"
               loading="lazy"
               width={1600}
@@ -311,7 +311,7 @@ function Index() {
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {divisions.map((d, i) => {
               const Icon = divisionIcons[i % divisionIcons.length]!;
-              const img = i === 0 ? divChassis.url : i === 1 ? divPowertrain.url : i === 2 ? divElectrical.url : null;
+              const img = i === 0 ? divChassis : i === 1 ? divPowertrain : i === 2 ? divElectrical : null;
               return (
                 <article
                   key={d.name}
