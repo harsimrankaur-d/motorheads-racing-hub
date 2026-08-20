@@ -32,6 +32,7 @@ import divElectrical from "@/assets/div-electrical.jpg";
 import divDynamics from "@/assets/aero.jpg";
 import divCad from "@/assets/3D.jpg";
 import divMarketing from "@/assets/market.jpg";
+import bmsitLogo from "@/assets/BMS.png";
 
 import {
   missionPillars,
@@ -198,24 +199,34 @@ function Index() {
 
       {/* HERO */}
       <section id="top" className="relative flex min-h-[100svh] items-end overflow-hidden">
-        <img
-          src={heroKart}
-          alt="Motorheads go-kart racing on track at dusk"
-          className="absolute inset-0 h-full w-full object-cover object-center"
-        />
-        <div
-          className="absolute inset-0"
-          style={{ background: "var(--gradient-hero)" }}
-          aria-hidden
-        />
-        <div className="speed-lines absolute inset-x-0 bottom-0 h-40 opacity-40" aria-hidden />
-        <div className="relative mx-auto w-full max-w-7xl px-5 pb-24 pt-32">
-          <div className="mb-5 inline-flex -skew-x-12 items-center gap-2 border border-primary/60 bg-primary/10 px-3 py-1">
-            <span className="skew-x-12 text-[11px] font-bold uppercase tracking-[0.3em] text-primary">
-              BMSIT&M · Bengaluru
-            </span>
-          </div>
-          <h1 className="max-w-4xl text-5xl leading-[0.85] sm:text-7xl lg:text-8xl">
+      <img
+        src={heroKart}
+        alt="Motorheads go-kart racing on track at dusk"
+        className="absolute inset-0 h-full w-full object-cover object-center"
+      />
+      <div
+        className="absolute inset-0"
+        style={{ background: "var(--gradient-hero)" }}
+        aria-hidden
+      />
+      <div className="speed-lines absolute inset-x-0 bottom-0 h-40 opacity-40" aria-hidden />
+      <div className="relative mx-auto w-full max-w-7xl px-5 pb-24 pt-32">
+        
+        {/* BMSIT Logo */}
+        <div className="mb-4 flex items-center">
+          <img
+            src={bmsLogo}
+            alt="BMSIT Logo"
+            className="h-12 w-auto object-contain filter drop-shadow-md"
+          />
+        </div>
+    
+        <div className="mb-5 inline-flex -skew-x-12 items-center gap-2 border border-primary/60 bg-primary/10 px-3 py-1">
+          <span className="skew-x-12 text-[11px] font-bold uppercase tracking-[0.3em] text-primary">
+            BMSIT&M · Bengaluru
+          </span>
+        </div>
+        <h1 className="max-w-4xl text-5xl leading-[0.85] sm:text-7xl lg:text-8xl">
             Built to Race.
             <br />
             <span className="text-primary">Engineered to Win.</span>
