@@ -23,8 +23,10 @@ import {
   Target,
 } from "lucide-react";
 
-import heroKart from "@/assets/kart-hero.jpg";
-import logoAsset from "@/assets/motorheads-logo.png";
+import heroKartAsset from "@/assets/kart-hero.jpg.asset.json";
+import logoJson from "@/assets/motorheads-logo.png.asset.json";
+const heroKart = heroKartAsset.url;
+const logoAsset = logoJson.url;
 import teamGroup from "@/assets/team-group.jpg";
 import divChassis from "@/assets/div-chassis.jpg";
 import divElectrical from "@/assets/div-electrical.jpg";
