@@ -556,36 +556,32 @@ function Index() {
         <div className="relative mx-auto max-w-7xl px-5">
           <SectionTitle kicker="Sponsorship Tiers" title="Pick Your Grid Position" />
           <div className="flex flex-wrap justify-center gap-5">
-            {tiers.map((t, i) => (
-              <article
-                key={t.name}
-                className={`group flex w-full flex-col border bg-background p-7 transition-all duration-300 hover:-translate-y-2 md:w-[calc(50%-10px)] lg:w-[calc(33.333%-14px)] ${
-                  i === 0
-                    ? "border-primary shadow-[var(--shadow-red)]"
-                    : "border-border hover:border-primary"
-                }`}
-              >
-                <span className="w-fit -skew-x-12 border border-primary/50 px-2 py-1 text-[10px] font-bold uppercase tracking-widest text-primary">
-                  {t.tag}
-                </span>
-                <h3 className="mt-4 text-2xl leading-tight text-foreground">{t.name}</h3>
-                <div className="mt-4 h-px w-full bg-border" />
-                <ul className="mt-5 flex-1 space-y-3">
-                  {t.benefits.map((b) => (
-                    <li key={b} className="flex gap-2 text-sm leading-relaxed text-muted-foreground">
-                      <ChevronRight className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                      <span>{b}</span>
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href="#contact"
-                  className="mt-7 inline-flex w-fit -skew-x-12 items-center gap-1 border border-foreground/25 px-5 py-2.5 text-xs font-bold uppercase tracking-widest transition-colors hover:border-primary hover:bg-primary hover:text-primary-foreground"
-                >
-                  <span className="skew-x-12">Enquire</span>
-                </a>
-              </article>
-            ))}
+          {tiers.map((t) => (
+  <article
+    key={t.name}
+    className="group flex w-full flex-col border border-border bg-background p-7 transition-all duration-300 hover:-translate-y-2 hover:border-primary hover:shadow-[var(--shadow-red)] md:w-[calc(50%-10px)] lg:w-[calc(33.333%-14px)]"
+  >
+    <span className="w-fit -skew-x-12 border border-primary/50 px-2 py-1 text-[10px] font-bold uppercase tracking-widest text-primary">
+      {t.tag}
+    </span>
+    <h3 className="mt-4 text-2xl leading-tight text-foreground">{t.name}</h3>
+    <div className="mt-4 h-px w-full bg-border" />
+    <ul className="mt-5 flex-1 space-y-3">
+      {t.benefits.map((b) => (
+        <li key={b} className="flex gap-2 text-sm leading-relaxed text-muted-foreground">
+          <ChevronRight className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+          <span>{b}</span>
+        </li>
+      ))}
+    </ul>
+    <a
+      href="#contact"
+      className="mt-7 inline-flex w-fit -skew-x-12 items-center gap-1 border border-foreground/25 px-5 py-2.5 text-xs font-bold uppercase tracking-widest transition-colors hover:border-primary hover:bg-primary hover:text-primary-foreground"
+    >
+      <span className="skew-x-12">Enquire</span>
+    </a>
+  </article>
+))}
           </div>
         </div>
       </section>
