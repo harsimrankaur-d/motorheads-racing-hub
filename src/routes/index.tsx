@@ -507,47 +507,50 @@ function Index() {
       </section>
 
       <div className="angled-divider-reverse angled-divider-reverse--background" aria-hidden />
+// 1. Array containing your specific sponsors & categories
+const sponsorsData = [
+  { name: "Vivitron Energy", category: "Battery Partner", logo: "/sponsors/vivitron.png" },
+  { name: "Simple Energy", category: "Motor, Controller & Brakes", logo: "/sponsors/simple-energy.png" },
+  { name: "Delhivery", category: "Logistics Partner", logo: "/sponsors/delhivery.png" },
+  { name: "Destinytion", category: "Hospitality Partner", logo: "/sponsors/destinytion.png" },
+  { name: "Caar Seva", category: "Monetary (Tyres)", logo: "/sponsors/caarseva.png" },
+  { name: "Namaah", category: "Monetary (Kart Floor)", logo: "/sponsors/namaah.png" },
+];
 
-      {/* SPONSOR */}
-      <section id="sponsor" className="relative overflow-hidden border-y border-border py-24">
-        <SparkBackground />
-        <div className="relative mx-auto max-w-7xl px-5">
-          <SectionTitle kicker="Why Sponsor Us" title="A Bet On Engineers Who Win" />
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {sponsorReasons.map((r, i) => {
-              const Icon = reasonIcons[i % reasonIcons.length]!;
-              return (
-                <article
-                  key={r.title}
-                  className="group border-l-4 border-primary bg-card p-6 transition-all duration-300 hover:-translate-y-1.5 hover:bg-secondary hover:shadow-[var(--shadow-red)]"
-                >
-                  <Icon className="h-7 w-7 text-primary" strokeWidth={2.2} />
-                  <h3 className="mt-5 text-xl text-foreground">{r.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{r.text}</p>
-                </article>
-              );
-            })}
-          </div>
+// 2. JSX Block to paste inside your Sponsors Section
+<div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+  {sponsorsData.map((sponsor, index) => (
+    <div
+      key={index}
+      className="flex flex-col items-center justify-between rounded-lg border border-neutral-800 bg-neutral-950/80 p-6 transition-all duration-300 hover:border-yellow-500/50"
+    >
+      {/* Logo container */}
+      <div className="flex h-32 w-full items-center justify-center p-2">
+        {sponsor.logo ? (
+          <img
+            src={sponsor.logo}
+            alt={`${sponsor.name} logo`}
+            className="max-h-full max-w-full object-contain grayscale transition-all duration-300 hover:grayscale-0"
+          />
+        ) : (
+          <span className="text-sm font-semibold uppercase tracking-wider text-neutral-500">
+            {sponsor.name} Logo
+          </span>
+        )}
+      </div>
 
-          {/* Impact strip */}
-          <div className="mt-12 grid divide-y divide-border border border-border bg-card sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4 lg:divide-x">
-            {impactStats.map((s) => (
-              <div key={s.label} className="px-6 py-8">
-                {s.value === "25+" ? (
-                  <CounterNumber target={25} suffix="+" />
-                ) : (
-                  <div className="skew-title text-3xl text-primary sm:text-4xl">{s.value}</div>
-                )}
-                <div className="mt-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-muted-foreground">
-                  {s.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <div className="angled-divider angled-divider--card" aria-hidden />
+      {/* Text Details */}
+      <div className="mt-4 text-center">
+        <h4 className="text-lg font-bold tracking-tight text-white">
+          {sponsor.name}
+        </h4>
+        <p className="mt-1 text-xs font-medium tracking-wide text-neutral-400">
+          {sponsor.category}
+        </p>
+      </div>
+    </div>
+  ))}
+</div>
 
       {/* TIERS */}
       <section id="tiers" className="relative overflow-hidden bg-card py-24">
