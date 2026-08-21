@@ -109,7 +109,7 @@ const sponsorsData = [
   {
     name: "Namaah",
     category: "Monetary (Kart Floor)",
-    logo: namaahLogo
+    logo: namaahLogo,
   },
 ];
 
