@@ -25,6 +25,12 @@ import logoJson from "@/assets/motorheads-logo.png.asset.json";
 import teamGroup from "@/assets/WhatsApp_Image_2026-06-20_at_15.32.31.jpeg";
 import divChassis from "@/assets/div-chassis.jpg";
 import divPowertrain from "@/assets/Gemini_Generated_Image_c6ekuvc6ekuvc6ek.jpg";
+import vivitronLogo from "@/assets/vivitron.jpg";
+import simpleEnergyLogo from "@/assets/simple_energy.jpg";
+import delhiveryLogo from "@/assets/delhivery.jpg";
+import destinytiionLogo from "@/assets/destinytion.jpg";
+import caarsevaLogo from "@/assets/caarseva.jpg";
+import namaahLogo from "@/assets/namaah.png";
 import divElectrical from "@/assets/div-electrical.jpg";
 import divDynamics from "@/assets/aero.jpg";
 import divCad from "@/assets/3D.jpg";
@@ -78,32 +84,32 @@ const sponsorsData = [
   {
     name: "Vivitron Energy",
     category: "Battery Partner",
-    logo: "/sponsors/vivitron.png",
+    logo: vivitronLogo,
   },
   {
     name: "Simple Energy",
     category: "Motor, Controller & Brakes",
-    logo: "/sponsors/simple-energy.png",
+    logo: simpleEnergyLogo,
   },
   {
     name: "Delhivery",
     category: "Logistics Partner",
-    logo: "/sponsors/delhivery.png",
+    logo: delhiveryLogo,
   },
   {
     name: "Destinytion",
     category: "Hospitality Partner",
-    logo: "/sponsors/destinytion.png",
+    logo: destinytiionLogo,
   },
   {
     name: "Caar Seva",
     category: "Monetary (Tyres)",
-    logo: "/sponsors/caarseva.png",
+    logo: caarsevaLogo,
   },
   {
     name: "Namaah",
     category: "Monetary (Kart Floor)",
-    logo: "/sponsors/namaah.png",
+    logo: namaahLogo,
   },
 ];
 
