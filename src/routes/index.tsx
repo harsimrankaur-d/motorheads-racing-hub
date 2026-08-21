@@ -30,7 +30,7 @@ import simpleEnergyLogo from "@/assets/simple_energy.jpg";
 import delhiveryLogo from "@/assets/delhivery.jpg";
 import destinytiionLogo from "@/assets/destinytion.jpg";
 import caarsevaLogo from "@/assets/caar_seva.jpg";
-import namaahLogo from "@/assets/namaah.png";
+import namaahLogo from "@/assets/namaah1.png";
 import divElectrical from "@/assets/div-electrical.jpg";
 import divDynamics from "@/assets/aero.jpg";
 import divCad from "@/assets/3D.jpg";
