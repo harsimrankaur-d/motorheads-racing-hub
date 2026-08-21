@@ -29,7 +29,7 @@ import vivitronLogo from "@/assets/vivitron.jpg";
 import simpleEnergyLogo from "@/assets/simple_energy.jpg";
 import delhiveryLogo from "@/assets/delhivery.jpg";
 import destinytiionLogo from "@/assets/destinytion.jpg";
-import caarsevaLogo from "@/assets/caarseva.jpg";
+import caarsevaLogo from "@/assets/caar_seva.jpg";
 import namaahLogo from "@/assets/namaah.png";
 import divElectrical from "@/assets/div-electrical.jpg";
 import divDynamics from "@/assets/aero.jpg";
