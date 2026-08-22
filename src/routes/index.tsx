@@ -119,8 +119,8 @@ function Preloader() {
   const [fading, setFading] = useState(false);
 
   useEffect(() => {
-    const fadeTimer = setTimeout(() => setFading(true), 2600);
-    const removeTimer = setTimeout(() => setVisible(false), 3100);
+    const fadeTimer = setTimeout(() => setFading(true), 1700);
+    const removeTimer = setTimeout(() => setVisible(false), 2200);
     return () => {
       clearTimeout(fadeTimer);
       clearTimeout(removeTimer);
