@@ -206,28 +206,34 @@
 .preloader-logo {
   position: relative;
   left: -20%;
-  animation: preloader-slide 1.6s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  animation: preloader-slide 2.6s linear forwards;
 }
 
 .preloader-progress {
   width: 0%;
-  animation: preloader-fill 1.6s linear forwards;
+  animation: preloader-fill 2.6s linear forwards;
 }
 
 @keyframes preloader-slide {
-  from {
+  0% {
     left: -20%;
   }
-  to {
+  70% {
+    left: 45%;
+  }
+  100% {
     left: 105%;
   }
 }
 
 @keyframes preloader-fill {
-  from {
+  0% {
     width: 0%;
   }
-  to {
+  70% {
+    width: 45%;
+  }
+  100% {
     width: 100%;
   }
 }
