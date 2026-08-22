@@ -113,6 +113,43 @@ const sponsorsData = [
   },
 ];
 
+/* --- PRELOADER --- */
+function Preloader() {
+  const [visible, setVisible] = useState(true);
+  const [fading, setFading] = useState(false);
+
+  useEffect(() => {
+    const fadeTimer = setTimeout(() => setFading(true), 1600);
+    const removeTimer = setTimeout(() => setVisible(false), 2100);
+    return () => {
+      clearTimeout(fadeTimer);
+      clearTimeout(removeTimer);
+    };
+  }, []);
+
+  if (!visible) return null;
+
+  return (
+    <div
+      className={`fixed inset-0 z-[100] flex items-center overflow-hidden bg-background transition-opacity duration-500 ${
+        fading ? "opacity-0" : "opacity-100"
+      }`}
+      style={{ pointerEvents: fading ? "none" : "auto" }}
+      aria-hidden
+    >
+      <div className="preloader-logo-track absolute inset-x-0 overflow-hidden">
+        <div className="preloader-logo flex items-center gap-2 whitespace-nowrap">
+          <img src={logoAsset} alt="" className="h-10 w-10 object-contain" />
+          <span className="skew-title -skew-x-6 text-3xl text-foreground">MOTORHEADS</span>
+        </div>
+      </div>
+      <div className="absolute inset-x-0 bottom-16 mx-auto h-0.5 w-40 bg-border">
+        <div className="preloader-progress h-full bg-primary" />
+      </div>
+    </div>
+  );
+}
+
 /* --- SPARK BACKGROUND COMPONENT --- */
 function SparkBackground() {
   return (
@@ -279,6 +316,8 @@ function Index() {
 
   return (
     <div className="min-h-screen bg-background">
+      <Preloader />
+
       {/* NAV */}
       <header className="fixed inset-x-0 top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-md">
         <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5">
