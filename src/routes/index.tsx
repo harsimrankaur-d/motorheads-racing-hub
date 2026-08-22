@@ -119,8 +119,8 @@ function Preloader() {
   const [fading, setFading] = useState(false);
 
   useEffect(() => {
-    const fadeTimer = setTimeout(() => setFading(true), 1600);
-    const removeTimer = setTimeout(() => setVisible(false), 2100);
+    const fadeTimer = setTimeout(() => setFading(true), 2600);
+    const removeTimer = setTimeout(() => setVisible(false), 3100);
     return () => {
       clearTimeout(fadeTimer);
       clearTimeout(removeTimer);
@@ -138,9 +138,9 @@ function Preloader() {
       aria-hidden
     >
       <div className="preloader-logo-track absolute inset-x-0 overflow-hidden">
-        <div className="preloader-logo flex items-center gap-2 whitespace-nowrap">
-          <img src={logoAsset} alt="" className="h-10 w-10 object-contain" />
-          <span className="skew-title -skew-x-6 text-3xl text-foreground">MOTORHEADS</span>
+        <div className="preloader-logo flex items-center gap-3 whitespace-nowrap">
+          <img src={logoAsset} alt="" className="h-14 w-14 object-contain" />
+          <span className="skew-title -skew-x-6 text-5xl text-foreground">MOTORHEADS</span>
         </div>
       </div>
       <div className="absolute inset-x-0 bottom-16 mx-auto h-0.5 w-40 bg-border">
