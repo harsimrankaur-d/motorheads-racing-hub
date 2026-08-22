@@ -177,3 +177,57 @@
   padding-left: 1rem;
   border-left: 4px solid var(--racing);
 }
+
+.angled-divider {
+  height: 48px;
+  background: var(--color-card);
+  clip-path: polygon(0 0, 100% 100%, 100% 100%, 0 100%);
+}
+
+.angled-divider--card {
+  background: var(--color-card);
+}
+
+.angled-divider-reverse {
+  height: 48px;
+  background: var(--color-background);
+  clip-path: polygon(0 100%, 100% 0, 100% 100%, 0 100%);
+}
+
+.angled-divider-reverse--background {
+  background: var(--color-background);
+}
+
+.preloader-logo-track {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.preloader-logo {
+  position: relative;
+  left: -20%;
+  animation: preloader-slide 1.6s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+.preloader-progress {
+  width: 0%;
+  animation: preloader-fill 1.6s linear forwards;
+}
+
+@keyframes preloader-slide {
+  from {
+    left: -20%;
+  }
+  to {
+    left: 105%;
+  }
+}
+
+@keyframes preloader-fill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
